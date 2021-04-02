@@ -4,6 +4,9 @@ import './App.css';
 import Auth from './Components/Auth/Auth';
 import Navigation from './Components/Navigation/Navigation';
 import Profile from './Components/Profile/Profile';
+import {
+  BrowserRouter as Router,
+} from 'react-router-dom';
 
 function App() {
 
