@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Auth from './Components/Auth/Auth';
-import Navigation from './Components/Navigation/Navigation';
 import Profile from './Components/Profile/Profile';
 import {
   BrowserRouter as Router,
@@ -10,17 +9,36 @@ import {
 
 function App() {
 
-  const thing: string = '12';
+  const [sessionToken, setSessionToken] = useState(''); //1
+
+  const clearToken = () => {
+    localStorage.clear();
+    setSessionToken('');
+  }
+
+  // useEffect(() => {
+  //   if (localStorage.getItem('token')) {
+  //     setSessionToken((localStorage.getItem('token'): SetStateAction<string>);
+  //   }
+  // }, [])
+
+  const updateToken = (newToken: any) => {
+    console.log(newToken);
+    localStorage.setItem('token', newToken);
+    setSessionToken(newToken);
+    console.log(sessionToken)
+  }
+
+  const thing: boolean = false;
 
   const protectedViews = () => {
-    return (thing == '12' ? <Profile /> : <Auth />)
+    return (thing ? <Profile /> : <Auth updateToken={updateToken}/>)
   };
 
   return (
     <div className="App">
       <header className="App-header">
       {protectedViews()}
-      <Navigation />
       </header>
     </div>
   );

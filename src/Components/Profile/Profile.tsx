@@ -1,18 +1,21 @@
 import React from 'react';
 import ProfileDisplay from './ProfileDisplay';
+import Navigation from '../Navigation/Navigation';
+import GameOfTheWeek from '../GameOfTheWeek/GameofTheWeek';
+
 
 export default class Profile extends React.Component {
     constructor (props: any) {
         super(props)
     };
 
-    thing: Boolean = false;
-
     render() {
         return(
             <div>
                 <p>Profile - Test</p>
-                <ProfileDisplay />
+                <GameOfTheWeek />
+                {/* <ProfileDisplay /> */}
+                <Navigation />
             </div>
         )
     }

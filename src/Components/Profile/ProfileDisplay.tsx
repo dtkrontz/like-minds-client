@@ -1,19 +1,18 @@
 import React from 'react';
 import GameIndex from './MyGames/GameIndex';
 import CommentIndex from './Comments/CommentIndex';
+import GameOfTheWeek from '../GameOfTheWeek/GameofTheWeek';
 
 export default class ProfileDisplay extends React.Component {
     constructor (props: any) {
         super(props)
     };
 
-    thing: Boolean = false;
-
     render() {
         return(
             <div>
                 <p>Profile Display - Test</p>
-                {this.thing ? <GameIndex /> : <CommentIndex />}
+                <GameOfTheWeek />
             </div>
         )
     }
