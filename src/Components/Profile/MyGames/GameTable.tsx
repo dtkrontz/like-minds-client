@@ -3,6 +3,7 @@
 import React from 'react';
 
 type GameTableProps = {
+    token: string,
 
 }
 
@@ -25,7 +26,7 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRlZGNhNGFhLTE5ZDktNGI1Ni1hMmMzLWE1NWE2OWViZmUxMCIsImlhdCI6MTYxNzYzNjk4NiwiZXhwIjoxNjE3NzIzMzg2fQ.g8BspfPPnU4nqTiJdxJYNH9Hp5ps7AJvE3kUNSPptNQ'
+                'Authorization': this.props.token
             })
         }).then(res => res.json())
         .then(json => {
@@ -36,8 +37,14 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
         })
     }
 
-    deleteGame = () => {
-        
+    deleteGame = (games: any, index: any) => {
+        fetch(`http://localhost:4000/games/${this.state.games}`, {
+            method: 'DELETE',
+            headers: new Headers ({
+                'Content-Type': 'application/json',
+                'Authorization': this.props.token
+            })
+        }).then(() => this.fetchGames)
     }
 
     componentDidMount() {
@@ -48,7 +55,7 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
         return(
             <div>
                 <p>Games Table - Test</p>
-                {this.state.games.map((result: any) => {
+                {this.state.games.map((result: any, index: any) => {
                     return (
                         <div>
                             <img src={result.image_url} alt='server img' style={{height: '150px'}} />
@@ -59,7 +66,8 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
                             <p>Review: {result.review}</p>
                             <p>Rating: {result.rating}</p>
                             <p>Favorite: {result.favorite}</p>
-                            <button>Delete from List</button>
+                            <button onClick={((e: any) => this.deleteGame(e, index))}>Delete from List</button>
+                            <button>Edit Game - open modal with fields</button>
                             <hr />
                         </div>
                     )

@@ -66,7 +66,7 @@ export default class GamesIndex extends React.Component<GameIndexProps, GameInde
             <div>
                 <p>Games Index - Test</p>
                 <label>Search Saved Games: <input type='text' placeholder='Game Title' /></label>
-                <GameTable />
+                <GameTable token={this.props.token} />
                 {/* <button onClick={this.searchGamesFetch}>Search</button> */}
                 {/* {this.state.create ? <GameCreate gamesList={this.state.gamesList} /> : null}
                 <GameTable /> */}
