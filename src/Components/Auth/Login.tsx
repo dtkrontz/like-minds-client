@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { updateShorthandPropertyAssignment } from 'typescript';
 
 type LoginProps = {
     updateToken: any
@@ -20,9 +19,21 @@ export default class Login extends Component<LoginProps, LoginState> {
         }
     };
 
+    updateUsername = (e: any) => {
+        this.setState(
+            {username: e.target.value}
+        )
+    };
+
+    updatePassword =(e: any) => {
+        this.setState(
+            {password: e.target.value}
+        )
+    };
+
     handleSubmit = (event: any) => {
         event.preventDefault();
-        fetch('http://localhost:4000/user/login', {
+        fetch('http://localhost:4000/auth/login', {
             method: 'POST',
             body: JSON.stringify(
                 {user: 
@@ -39,6 +50,7 @@ export default class Login extends Component<LoginProps, LoginState> {
         .then((response) => response.json())
         .then((data) => {
             this.props.updateToken(data.sessionToken);
+            console.log(data);
         })
     }
 
@@ -46,6 +58,17 @@ export default class Login extends Component<LoginProps, LoginState> {
         return(
             <div>
                 <p>Login - Test</p>
+                <h1>Login</h1>
+                <form onSubmit={this.handleSubmit}>
+                    <label> Username:
+                        <input onChange={this.updateUsername} type='username' value={this.state.username} />
+                    </label>
+                    <label> Password:
+                        <input onChange={this.updatePassword} type='password' value={this.state.password} />
+                    </label>
+                    <br />
+                    <button>Submit</button>
+                </form>
                 <button onClick={this.props.closeHandler} >Close</button>
             </div>
         )

@@ -4,7 +4,8 @@ import Signup from './SignUp';
 import GameOfTheWeek from '../GameOfTheWeek/GameofTheWeek';
 
 type AuthProps = {
-    updateToken: any
+    updateToken: any,
+    clearToken: any
 }
 
 type AuthState = {
@@ -53,6 +54,7 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
                 {/* <Login updateToken={this.props.updateToken}/> */}
                 {/* <Signup updateToken={this.props.updateToken} /> */}
                 <GameOfTheWeek />
+                <button onClick={this.props.clearToken}>Clear Token</button>
             </div>
         )
     }

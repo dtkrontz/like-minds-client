@@ -3,13 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 import Auth from './Components/Auth/Auth';
 import Profile from './Components/Profile/Profile';
-import {
-  BrowserRouter as Router,
-} from 'react-router-dom';
+
+
 
 function App() {
 
-  const [sessionToken, setSessionToken] = useState(''); //1
+  const [sessionToken, setSessionToken] = useState('');
 
   const clearToken = () => {
     localStorage.clear();
@@ -18,21 +17,28 @@ function App() {
 
   // useEffect(() => {
   //   if (localStorage.getItem('token')) {
-  //     setSessionToken((localStorage.getItem('token'): SetStateAction<string>);
+  //     setSessionToken((localStorage.getItem('token')));
   //   }
-  // }, [])
+  // }, []);
+
+
+    // const thingOne =((newToken: any) => {
+    //       setSessionToken(newToken);
+    // })
+  
 
   const updateToken = (newToken: any) => {
     console.log(newToken);
     localStorage.setItem('token', newToken);
     setSessionToken(newToken);
-    console.log(sessionToken)
   }
+  
+  console.log(sessionToken);
 
   const thing: boolean = false;
 
   const protectedViews = () => {
-    return (thing ? <Profile /> : <Auth updateToken={updateToken}/>)
+    return (sessionToken === localStorage.getItem('token') && localStorage.getItem('token') != undefined ? <Profile token={sessionToken} /> : <Auth clearToken={clearToken} updateToken={updateToken}/>)
   };
 
   return (
