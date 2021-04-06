@@ -24,9 +24,9 @@ export default class GamesEdit extends React.Component<GameEditProps, GameEditSt
         super(props)
         this.state = {
             edit: false,
-            review: '',
+            review: this.props.gameToUpdate.review,
             favorite: this.props.gameToUpdate.favorite,
-            rating: 0,
+            rating: this.props.gameToUpdate.rating,
         }
     };
 
@@ -77,11 +77,11 @@ export default class GamesEdit extends React.Component<GameEditProps, GameEditSt
                 <p>Games Edit - Test</p>
             <div>
                 <p>Edit Games</p>
-                <label>Review: <input type='text' name='review' placeholder='Your Review' onChange={this.updateAllInput} /></label>
+                <label>Review: <input type='text' name='review' value={this.state.review} onChange={this.updateAllInput} /></label>
                 <br />
                 <label>Favorite: <input type='checkbox' checked={this.state.favorite} name='favorite' onChange={(e) => this.handleFavorite(e.target.value)} /></label>
                 <br />
-                <label>Rating: <input type='text' name='rating' placeholder='Rating 0-10' onChange={this.updateAllInput} /></label>
+                <label>Rating: <input type='text' name='rating' value={this.state.rating} onChange={this.updateAllInput} /></label>
                 <br />
                 <button onClick={(() => this.updateGame())}>Submit</button>
                 <button onClick={this.props.handleEditCancel}>Cancel</button>
