@@ -1,6 +1,6 @@
 //Map the Get request from the profile.tsx
 
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import Modal from '@material-ui/core/Modal';
 import GameEdit from './GameEdit'
 import { resourceLimits } from 'node:worker_threads';
@@ -62,7 +62,7 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
     //     this.props.fetchGames();
     // }
 
-    updateInput = (e: any) => {
+    updateInput = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState(
             {input: e.target.value}
         )
@@ -89,13 +89,29 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
     //     )
     // }
 
+    mapSort = (): [] => {
+        return (
+            this.props.games.sort((a: any, b: any) => {
+            let nameA: string = a.title.toUpperCase();
+            let nameB: string = b.title.toUpperCase();
+            console.log(nameA, nameB);
+            if (nameA < nameB) {
+                return -1;
+            } else if (nameA > nameB) {
+                return 1;
+            } else {
+                return 0;
+            };
+        }))
+    }
+
     render() {
         return(
             <div>
                 <p>Games Table - Test</p>
                 <label>Search Saved Games: <input type='text' placeholder='Game Title'  onChange={((e) => this.updateInput(e))} /></label>
                 {/* {this.props.games.filter((table: any) => table.includes(this.state.input)).map((result: any, index: any) => { */}
-                {this.props.games.map((result: any, index: any) => {
+                {this.mapSort().map((result: any, index: any) => {
                     return (
                         <div key={index}>
                             <img src={result.image_url} alt='server img' style={{height: '150px'}} />
