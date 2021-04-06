@@ -9,7 +9,8 @@ type GameIndexProps ={
 }
 
 type GameIndexState = {
-    games: []
+    games: [],
+    input: string,
 }
 
 export default class GamesIndex extends React.Component<GameIndexProps, GameIndexState> {
@@ -17,6 +18,7 @@ export default class GamesIndex extends React.Component<GameIndexProps, GameInde
         super(props)
         this.state = {
             games: [],
+            input: '',
         }
     };
 
@@ -65,8 +67,7 @@ export default class GamesIndex extends React.Component<GameIndexProps, GameInde
         return(
             <div>
                 <p>Games Index - Test</p>
-                <label>Search Saved Games: <input type='text' placeholder='Game Title' /></label>
-                <GameTable token={this.props.token} />
+                <GameTable token={this.props.token} input={this.state.input} />
                 {/* <button onClick={this.searchGamesFetch}>Search</button> */}
                 {/* {this.state.create ? <GameCreate gamesList={this.state.gamesList} /> : null}
                 <GameTable /> */}
