@@ -11,6 +11,8 @@ type GameIndexProps ={
 type GameIndexState = {
     games: [],
     input: string,
+    edit: boolean
+    gameToUpdate: []
 }
 
 export default class GamesIndex extends React.Component<GameIndexProps, GameIndexState> {
@@ -19,6 +21,8 @@ export default class GamesIndex extends React.Component<GameIndexProps, GameInde
         this.state = {
             games: [],
             input: '',
+            edit: false,
+            gameToUpdate: [],
         }
     };
 
@@ -63,11 +67,33 @@ export default class GamesIndex extends React.Component<GameIndexProps, GameInde
     //     })
     // }
 
+    handleEdit = () => {
+        this.setState({
+            edit: true
+        })
+    }
+
+    handleEditCancel = () => {
+        this.setState({
+            edit: false
+        })
+    }
+
+    editGame = (game: any) => {
+        this.setState({
+            gameToUpdate: game
+        })
+        // console.log(game);
+    }
+
     render() {
         return(
             <div>
                 <p>Games Index - Test</p>
-                <GameTable token={this.props.token} input={this.state.input} />
+                <p>Games Table</p>
+                <GameTable token={this.props.token} fetchGames={this.fetchGames} games={this.state.games} input={this.state.input} handleEdit={this.handleEdit} editGame={this.editGame} />
+                <p>Games Edit</p>
+                {this.state.edit ? <GameEdit fetchGames={this.fetchGames} token={this.props.token} handleEditCancel={this.handleEditCancel} gameToUpdate={this.state.gameToUpdate} /> : null}
                 {/* <button onClick={this.searchGamesFetch}>Search</button> */}
                 {/* {this.state.create ? <GameCreate gamesList={this.state.gamesList} /> : null}
                 <GameTable /> */}
