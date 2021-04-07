@@ -1,7 +1,11 @@
 import React from 'react';
 
 interface CommentEditProps {
-    token: string
+    token: string,
+    fetchComments: any,
+    handleEdit: any,
+    handleEditCancel: any,
+    commentToUpdate: any,
 };
 
 interface CommentEditState {
@@ -12,35 +16,35 @@ export default class CommentEdit extends React.Component<CommentEditProps, Comme
     constructor (props: any) {
         super(props)
         this.state = {
-            content: '',
+            content: this.props.commentToUpdate.content,
         }
     };
 
     componentDidMount() {
         console.log('this.props.commentToUpdate');
+        console.log(this.props.commentToUpdate);
     }
 
     updateInput = (e: any) => {
         console.log(typeof(e));
-        const value = e.target.value;
         this.setState({
-
+            content: e.target.value
         })
     };
 
     updateComment = () => {
-        // fetch(`http://localhost:4000/comments/${this.props.commentToUpdate.id}`, {
-        //     method: 'PUT',
-        //     body: JSON.stringify({
-        //         comment: {
-        //             content: this.state.content
-        //         }
-        //     }),
-        //     headers: new Headers ({
-        //         'Content-Type': 'application/json',
-        //         'Authorization': this.props.token
-        //     })
-        // })
+        fetch(`http://localhost:4000/comments/${this.props.commentToUpdate.id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                comment: {
+                    content: this.state.content
+                }
+            }),
+            headers: new Headers ({
+                'Content-Type': 'application/json',
+                'Authorization': this.props.token
+            })
+        })
     }
 
     render() {
@@ -48,7 +52,7 @@ export default class CommentEdit extends React.Component<CommentEditProps, Comme
             <div>
                 <p>Comment Edit - Test</p>
                 <label>Comment: <input type='text' value={this.state.content} onChange={this.updateInput} /></label>
-                <button>Submit</button>
+                <button onClick={(() => this.updateComment())}>Submit</button>
                 <button>Cancel</button>
             </div>
         )
