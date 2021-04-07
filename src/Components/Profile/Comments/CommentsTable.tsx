@@ -32,14 +32,50 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
         }))
     }
 
+    commentMap = () => {
+        // console.log(result.id);
+        // console.log(this.props.fetchComments[index].gameId);
+        //game table ID vs comments table gameID
+        // if (result.id === this.props.fetchComments[index].gameId && this.props.fetchComments[0] !== undefined) {
+            if (this.props.fetchComments.length > 0) {
+            return this.props.fetchComments.map((commentResult: any) => {
+                    console.log(commentResult.content);
+                    return (
+                        <div>
+                            <ul>
+                            <li>{commentResult.content}</li>
+                            </ul>
+                            <button>Delete comment</button>
+                            <button>Edit comment - open modal with fields - dialog box</button>
+                        </div>
+                    );
+                })
+            } else {
+                return null
+            }
+    }
+
     // commentMap = () => {
-    //     if ('gameID' === 'gametableId') {
-                // this.props.fetchComments.map((result: any, index: any) => {
-                //     return (
-                //         <div>{result.content}</div>
-                //     )
-                // })
-    //     }
+    //     console.log(this.props.fetchComments)
+    //     //game table ID vs comments table gameID
+    //     if (this.props.fetchComments.length > 0) {
+    //        return this.props.fetchComments.map((commentResult: any, index: number) => {
+    //                 console.log(commentResult.content);
+    //                 return (
+    //                     <div key={index}>
+    //                         <ul>
+    //                         <li>{commentResult.content}</li>
+    //                         </ul>
+    //                         <button>Delete comment</button>
+    //                         <button>Edit comment - open modal with fields - dialog box</button>
+    //                     </div>
+    //                 );
+    //             })
+    //     } else {
+    //         return (
+    //             null
+    //         )
+    //     }  
     // }
 
     render() {
@@ -55,15 +91,17 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                             <p>Genre: {result.genre}</p>
                             <p>System: {result.system}</p>
                             <p>{result.description}</p>
-                            <p>Comments: </p>
-                            <button>Delete comment</button>
-                            <button>Edit comment - open modal with fields - dialog box</button>
+                            <p>Comments: {this.commentMap()}</p>
+                            <button>Add comment - open modal with fields - dialog box</button>
                             <hr />
                         </div>
                     )
                 })}
-                <p>Comments mapper</p>
             </div>
+            // <div>
+            //     <p>Comments</p>
+            //     <p>Comments: {this.commentMap()}</p>
+            // </div>
         )
     }
 } 

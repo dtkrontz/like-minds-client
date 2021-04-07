@@ -21,7 +21,7 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
         }
     };
 
-    componentDidMount() {
+    componentWillMount() {
         this.fetchFavoriteGames();
         this.fetchComments();
     };
@@ -38,7 +38,7 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
             this.setState({
                 favoriteGames: json
             })
-            console.log('favorite games', this.state.favoriteGames)
+            console.log('favoriteGames', this.state.favoriteGames)
         })
     }
 
@@ -54,7 +54,7 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
             this.setState({
                 favoriteGamesComments: json
             })
-            console.log('comments', this.state.favoriteGamesComments)
+            console.log('favoriteGamesComments', this.state.favoriteGamesComments)
         })
     }
 
