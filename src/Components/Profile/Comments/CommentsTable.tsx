@@ -3,8 +3,9 @@ import React from 'react';
 interface CommentIndexProps {
     token: string,
     fetchFavoriteGames: any,
-    favoriteGames: []
-    fetchComments: any
+    favoriteGames: [],
+    fetchComments: any,
+    favoriteGamesComments: any
 }
 
 interface CommentIndexState {
@@ -15,6 +16,20 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
     constructor (props: any) {
         super(props)
     };
+
+    deleteComment = async (result: any, index: any) => {
+        console.log('delete');
+        console.log(result);
+        console.log(index);
+        console.log(result[index].id)
+        await fetch(`http://localhost:4000/comments/${result[index].id}`, {
+            method: 'DELETE',
+            headers: new Headers ({
+                'Content-Type': 'application/json',
+                'Authorization': this.props.token
+            })
+        }).then(() => this.props.fetchComments())
+    }
 
     mapGamesSort = (): [] => {
         return (
@@ -34,18 +49,18 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
 
     commentMap = () => {
         // console.log(result.id);
-        // console.log(this.props.fetchComments[index].gameId);
+        // console.log(this.props.favoriteGamesComments[index].gameId);
         //game table ID vs comments table gameID
-        // if (result.id === this.props.fetchComments[index].gameId && this.props.fetchComments[0] !== undefined) {
-            if (this.props.fetchComments.length > 0) {
-            return this.props.fetchComments.map((commentResult: any) => {
+        // if (result.id === this.props.favoriteGamesComments[index].gameId && this.props.favoriteGamesComments[0] !== undefined) {
+            if (this.props.favoriteGamesComments.length > 0) {
+            return this.props.favoriteGamesComments.map((commentResult: any, index: any) => {
                     console.log(commentResult.content);
                     return (
-                        <div>
+                        <div key={index}>
                             <ul>
                             <li>{commentResult.content}</li>
                             </ul>
-                            <button>Delete comment</button>
+                            <button onClick={((e: any) => this.deleteComment(this.props.favoriteGamesComments, index))}>Delete comment</button>
                             <button>Edit comment - open modal with fields - dialog box</button>
                         </div>
                     );
@@ -56,10 +71,10 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
     }
 
     // commentMap = () => {
-    //     console.log(this.props.fetchComments)
+    //     console.log(this.props.favoriteGamesComments)
     //     //game table ID vs comments table gameID
-    //     if (this.props.fetchComments.length > 0) {
-    //        return this.props.fetchComments.map((commentResult: any, index: number) => {
+    //     if (this.props.favoriteGamesComments.length > 0) {
+    //        return this.props.favoriteGamesComments.map((commentResult: any, index: number) => {
     //                 console.log(commentResult.content);
     //                 return (
     //                     <div key={index}>

@@ -71,7 +71,7 @@ export default class ProfileDisplay extends React.Component<ProfileProps, Profil
                 <GameOfTheWeek />
                 <label>Search Games: <input type='text' placeholder='Game Title' onChange={this.updateSearchTerm} /></label>
                 <button onClick={this.searchGamesFetch}>Search</button>
-                {this.state.create ? <GameCreate token={this.props.token} gamesList={this.state.gamesList} /> : null}
+                <GameCreate token={this.props.token} gamesList={this.state.gamesList} />
             </div>
         )
     }
