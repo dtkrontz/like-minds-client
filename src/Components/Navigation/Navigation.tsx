@@ -43,7 +43,7 @@ export default class Navigation extends React.Component<NavigationProps, Navigat
                     <Switch>
                         <Route exact path='/profiledisplay'><Profile token={this.props.token} /></Route>
                         <Route exact path='/gamesindex'><GamesIndex token={this.props.token} /></Route>
-                        <Route exact path='/commentsindex'><CommentsIndex  /></Route>
+                        <Route exact path='/commentsindex'><CommentsIndex token={this.props.token} /></Route>
                     </Switch>
                 </div>
                 </Router>

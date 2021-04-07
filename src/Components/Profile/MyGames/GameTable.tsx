@@ -103,7 +103,7 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
                 return 0;
             };
         }))
-    }
+    };
 
     render() {
         return(
@@ -117,8 +117,8 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
                             <img src={result.image_url} alt='server img' style={{height: '150px'}} />
                             <h2>{result.title}</h2>
                             <h4>{result.id}</h4>
-                            <p>{result.genre}</p>
-                            <p>{result.system}</p>
+                            <p>Genre: {result.genre}</p>
+                            <p>System: {result.system}</p>
                             <p>{result.description}</p>
                             <p>Review: {result.review}</p>
                             <p>Rating: {result.rating}</p>
@@ -133,5 +133,5 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
                 })}
             </div>
         )
-    }
-} 
+    };
+};

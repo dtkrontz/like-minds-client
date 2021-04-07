@@ -3,9 +3,8 @@ import GameCreate from './GameCreate';
 import GameTable from './GameTable';
 import GameEdit from './GameEdit';
 
-type GameIndexProps ={
+type GameIndexProps = {
     token: string,
-
 }
 
 type GameIndexState = {
@@ -46,7 +45,7 @@ export default class GamesIndex extends React.Component<GameIndexProps, GameInde
 
     componentDidMount() {
         this.fetchGames();
-    }
+    };
 
     // searchGamesFetch = async () => {
     //     await fetch (`https://api.rawg.io/api/games?key=${this.state.apiKey}&search=${this.state.searchTerm}`)
