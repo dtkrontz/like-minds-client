@@ -4,6 +4,8 @@ import GamesIndex from '../MyGames/GameIndex';
 
 interface CommentCreateProps {
     token: string,
+    gameId: string,
+    fetchFavoriteGames: any,
 }
 
 interface CommentCreateState {
@@ -16,7 +18,7 @@ export default class CommentCreate extends React.Component<CommentCreateProps, C
         super(props)
         this.state = {
             content: '',
-            gameId: '' // pull this id from somewhere
+            gameId: this.props.gameId // pull this id from somewhere
         }
     };
 
@@ -39,7 +41,7 @@ export default class CommentCreate extends React.Component<CommentCreateProps, C
                 'Content-Type': 'application/json',
                 'Authorization': this.props.token
             })
-        })
+        }).then(() => this.props.fetchFavoriteGames())
     }
 
     render() {
@@ -47,7 +49,7 @@ export default class CommentCreate extends React.Component<CommentCreateProps, C
             <div>
                 <p>Comment Create - Test</p>
                 <label>Comment: <input type='text' onChange={this.updateContent} /></label>
-                <button>Submit</button>
+                <button onClick={this.addComment}>Add Comment</button>
                 <button>Cancel</button>
             </div>
         )

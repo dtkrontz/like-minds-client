@@ -60,6 +60,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                             <ul>
                             <li>{commentResult.content} - {commentResult.user.username}</li>
                             </ul>
+                            {/* Ternary to check token id with comment id || admin is true*/}
                             <button onClick={((e: any) => this.deleteComment(commentResult.id))}>Delete comment</button>
                             <button  onClick={() => {this.props.editComment(commentResult); this.props.handleEdit()}}>Edit comment - open modal with fields - dialog box</button>
                         </div>
@@ -108,7 +109,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                             <p>System: {result.system}</p>
                             <p>{result.description}</p>
                             <p>Comments: {this.commentMap(result)}</p>
-                            <button onClick={this.props.handleAdd}>Add comment - open modal with fields - dialog box</button>
+                            <button onClick={(e) => this.props.handleAdd(result.id)}>Add comment - open modal with fields - dialog box</button>
                             <hr />
                         </div>
                     )

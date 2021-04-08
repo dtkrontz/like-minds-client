@@ -13,6 +13,7 @@ interface CommentIndexState {
     edit: boolean,
     commentToUpdate: [],
     add: boolean,
+    gameId: string,
 }
 
 export default class GamesIndex extends React.Component<CommentIndexProps, CommentIndexState> {
@@ -23,7 +24,8 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
             // favoriteGamesComments: [],
             edit: false,
             commentToUpdate: [],
-            add: false
+            add: false,
+            gameId: '',
         }
     };
 
@@ -76,15 +78,17 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
         })
     }
 
-    handleAdd = () => {
+    handleAdd = (result: any) => {
+        console.log(result);
         this.setState({
-            add: true
+            add: true,
+            gameId: result
         })
     }
 
     handleAddCancel = () => {
         this.setState({
-            add: false
+            add: false,
         })
     }
 
@@ -98,10 +102,9 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
         return(
             <div>
                 <p>Comment Index - Test</p>
-                <CommentCreate token={this.props.token} />
                 <CommentTable token={this.props.token} fetchFavoriteGames={this.fetchFavoriteGames} favoriteGames={this.state.favoriteGames} handleEdit={this.handleEdit} handleAdd={this.handleAdd} editComment={this.editComment} />
                 {this.state.edit ? <CommentEdit token={this.props.token}  handleEditCancel={this.handleEditCancel} commentToUpdate={this.state.commentToUpdate} fetchFavoriteGames={this.fetchFavoriteGames} /> : null}
-                {this.state.add ? <CommentCreate token={this.props.token} /> : null}
+                {this.state.add ? <CommentCreate token={this.props.token} gameId={this.state.gameId} fetchFavoriteGames={this.fetchFavoriteGames} /> : null}
             </div>
         )
     }
