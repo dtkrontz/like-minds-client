@@ -49,7 +49,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
         }))
     };
 
-    commentMap = () => {
+    commentMap = (result: any, index: any) => {
         // console.log(result.id);
         // console.log(this.props.favoriteGamesComments[index].gameId);
         //game table ID vs comments table gameID
@@ -70,7 +70,8 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
             } else {
                 return null
             }
-    }
+    // }
+}
 
     // commentMap = () => {
     //     console.log(this.props.favoriteGamesComments)
@@ -108,7 +109,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                             <p>Genre: {result.genre}</p>
                             <p>System: {result.system}</p>
                             <p>{result.description}</p>
-                            <p>Comments: {this.commentMap()}</p>
+                            <p>Comments: {this.commentMap(result, index)}</p>
                             <button>Add comment - open modal with fields - dialog box</button>
                             <hr />
                         </div>

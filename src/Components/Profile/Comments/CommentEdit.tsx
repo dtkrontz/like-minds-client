@@ -56,7 +56,7 @@ export default class CommentEdit extends React.Component<CommentEditProps, Comme
                 <p>Comment Edit - Test</p>
                 <label>Comment: <input type='text' value={this.state.content} onChange={this.updateInput} /></label>
                 <button onClick={(() => this.updateComment())}>Submit</button>
-                <button onClick={this.props.handleEditCancel()}>Cancel</button>
+                <button onClick={(() => this.props.handleEditCancel())}>Cancel</button>
             </div>
         )
     }

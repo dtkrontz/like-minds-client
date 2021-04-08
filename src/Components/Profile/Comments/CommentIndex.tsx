@@ -20,12 +20,12 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
         this.state = {
             favoriteGames: [],
             favoriteGamesComments: [],
-            edit: false,
+            edit: true,
             commentToUpdate: [],
         }
     };
 
-    componentWillMount() {
+    componentDidMount() {
         this.fetchFavoriteGames();
         this.fetchComments();
     };

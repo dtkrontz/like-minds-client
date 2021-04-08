@@ -40,6 +40,7 @@ export default class CommentCreate extends React.Component<CommentCreateProps, C
         return(
             <div>
                 <p>Comment Create - Test</p>
+                <label>Comment: <input /></label>
             </div>
         )
     }
