@@ -20,6 +20,12 @@ export default class CommentCreate extends React.Component<CommentCreateProps, C
         }
     };
 
+    updateContent = (e: any) => {
+        this.setState({
+            content: e.target.value
+        })
+    }
+
     addComment = () => {
         fetch('http://localhost:4000/comments/comment', {
             method: 'POST',
@@ -40,8 +46,9 @@ export default class CommentCreate extends React.Component<CommentCreateProps, C
         return(
             <div>
                 <p>Comment Create - Test</p>
-                <label>Comment: <input /></label>
+                <label>Comment: <input type='text' onChange={this.updateContent} /></label>
                 <button>Submit</button>
+                <button>Cancel</button>
             </div>
         )
     }
