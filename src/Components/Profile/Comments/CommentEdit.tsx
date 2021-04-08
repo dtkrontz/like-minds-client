@@ -36,6 +36,7 @@ export default class CommentEdit extends React.Component<CommentEditProps, Comme
     };
 
     updateComment = () => {
+        console.log('update');
         fetch(`http://localhost:4000/comments/${this.props.commentToUpdate.id}`, {
             method: 'PUT',
             body: JSON.stringify({
@@ -48,6 +49,7 @@ export default class CommentEdit extends React.Component<CommentEditProps, Comme
                 'Authorization': this.props.token
             })
         })
+        .then(() => this.props.fetchComments());
     }
 
     render() {
