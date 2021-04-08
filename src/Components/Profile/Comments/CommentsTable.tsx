@@ -6,6 +6,7 @@ interface CommentIndexProps {
     favoriteGames: [],
     // fetchComments: any,
     handleEdit: any,
+    handleAdd: any,
     editComment: any
 }
 
@@ -101,13 +102,13 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                     return (
                         <div key={index}>
                             <img src={result.image_url} alt='server img' style={{height: '150px'}} />
-                            <h2>{result.title}</h2>
+                            <h2>{result.title}: <br/> {result.user.username}'s Favorite Game!</h2>
                             <h4>{result.id}</h4>
                             <p>Genre: {result.genre}</p>
                             <p>System: {result.system}</p>
                             <p>{result.description}</p>
                             <p>Comments: {this.commentMap(result)}</p>
-                            <button>Add comment - open modal with fields - dialog box</button>
+                            <button onClick={this.props.handleAdd}>Add comment - open modal with fields - dialog box</button>
                             <hr />
                         </div>
                     )

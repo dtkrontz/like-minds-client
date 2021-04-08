@@ -47,9 +47,9 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
     //     })
     // }
 
-    deleteGame = async (result: any, index: any) => {
-        console.log(result);
-        await fetch(`http://localhost:4000/games/${result[index].id}`, {
+    deleteGame = async (id: number) => {
+        console.log(id);
+        await fetch(`http://localhost:4000/games/${id}`, {
             method: 'DELETE',
             headers: new Headers ({
                 'Content-Type': 'application/json',
@@ -112,6 +112,7 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
                 <label>Search Saved Games: <input type='text' placeholder='Game Title'  onChange={((e) => this.updateInput(e))} /></label>
                 {/* {this.props.games.filter((table: any) => table.includes(this.state.input)).map((result: any, index: any) => { */}
                 {this.mapSort().map((result: any, index: any) => {
+                    console.log(result);
                     return (
                         <div key={index}>
                             <img src={result.image_url} alt='server img' style={{height: '150px'}} />
@@ -123,7 +124,7 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
                             <p>Review: {result.review}</p>
                             <p>Rating: {result.rating}</p>
                             <p>Favorite: {result.favorite ? 'My Favorite Game' : 'Not My Favorite Game'}</p>
-                            <button onClick={((e: any) => this.deleteGame(this.props.games, index))}>Delete from List</button>
+                            <button onClick={((e: any) => this.deleteGame(result.id))}>Delete from List</button>
                             <button onClick={() => {this.props.editGame(result); this.props.handleEdit()}}>Edit Game - open modal with fields - dialog box</button>
                             {/* {this.state.edit ? <GameEdit fetchGames={this.props.fetchGames} token={this.props.token} handleEditCancel={this.handleEditCancel} result={result} index={index} /> : <div>
                             <button key={index} onClick={this.handleEdit}>Edit Game - open modal with fields - dialog box</button></div>} */}

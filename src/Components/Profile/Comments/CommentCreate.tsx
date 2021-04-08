@@ -41,6 +41,7 @@ export default class CommentCreate extends React.Component<CommentCreateProps, C
             <div>
                 <p>Comment Create - Test</p>
                 <label>Comment: <input /></label>
+                <button>Submit</button>
             </div>
         )
     }
