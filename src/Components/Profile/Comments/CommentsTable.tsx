@@ -57,7 +57,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                     return (
                         <div key={index}>
                             <ul>
-                            <li>{commentResult.content}</li>
+                            <li>{commentResult.content} - {commentResult.user.username}</li>
                             </ul>
                             <button onClick={((e: any) => this.deleteComment(commentResult.id))}>Delete comment</button>
                             <button  onClick={() => {this.props.editComment(commentResult); this.props.handleEdit()}}>Edit comment - open modal with fields - dialog box</button>
