@@ -80,15 +80,13 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
         })
     }
 
-    thing: Boolean = false;
-
     render() {
         return(
             <div>
                 <p>Comment Index - Test</p>
                 <CommentCreate token={this.props.token} />
-                <CommentTable token={this.props.token} fetchFavoriteGames={this.fetchFavoriteGames} favoriteGames={this.state.favoriteGames} favoriteGamesComments={this.state.favoriteGamesComments} fetchComments={this.fetchComments} />
-                {this.thing ? <CommentEdit token={this.props.token} fetchComments={this.fetchComments} handleEdit={this.handleEdit} handleEditCancel={this.handleEditCancel} commentToUpdate={this.state.commentToUpdate} /> : <></>}
+                <CommentTable token={this.props.token} fetchFavoriteGames={this.fetchFavoriteGames} favoriteGames={this.state.favoriteGames} favoriteGamesComments={this.state.favoriteGamesComments} fetchComments={this.fetchComments} handleEdit={this.handleEdit} editComment={this.editComment} />
+                {this.state.edit ? <CommentEdit token={this.props.token} fetchComments={this.fetchComments} handleEditCancel={this.handleEditCancel} commentToUpdate={this.state.commentToUpdate} /> : <></>}
             </div>
         )
     }

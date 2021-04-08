@@ -3,7 +3,6 @@ import React from 'react';
 interface CommentEditProps {
     token: string,
     fetchComments: any,
-    handleEdit: any,
     handleEditCancel: any,
     commentToUpdate: any,
 };
@@ -23,6 +22,10 @@ export default class CommentEdit extends React.Component<CommentEditProps, Comme
     componentDidMount() {
         console.log('this.props.commentToUpdate');
         console.log(this.props.commentToUpdate);
+    };
+
+    componentWillUnmount() {
+        console.log('I unmounted')
     }
 
     updateInput = (e: any) => {
@@ -53,7 +56,7 @@ export default class CommentEdit extends React.Component<CommentEditProps, Comme
                 <p>Comment Edit - Test</p>
                 <label>Comment: <input type='text' value={this.state.content} onChange={this.updateInput} /></label>
                 <button onClick={(() => this.updateComment())}>Submit</button>
-                <button>Cancel</button>
+                <button onClick={this.props.handleEditCancel()}>Cancel</button>
             </div>
         )
     }

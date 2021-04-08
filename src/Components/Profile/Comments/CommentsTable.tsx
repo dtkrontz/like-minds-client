@@ -5,7 +5,9 @@ interface CommentIndexProps {
     fetchFavoriteGames: any,
     favoriteGames: [],
     fetchComments: any,
-    favoriteGamesComments: any
+    favoriteGamesComments: any,
+    handleEdit: any,
+    editComment: any
 }
 
 interface CommentIndexState {
@@ -45,7 +47,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                 return 0;
             };
         }))
-    }
+    };
 
     commentMap = () => {
         // console.log(result.id);
@@ -61,7 +63,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                             <li>{commentResult.content}</li>
                             </ul>
                             <button onClick={((e: any) => this.deleteComment(this.props.favoriteGamesComments, index))}>Delete comment</button>
-                            <button>Edit comment - open modal with fields - dialog box</button>
+                            <button  onClick={() => {this.props.editComment(commentResult); this.props.handleEdit()}}>Edit comment - open modal with fields - dialog box</button>
                         </div>
                     );
                 })
