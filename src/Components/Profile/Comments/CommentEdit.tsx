@@ -2,9 +2,10 @@ import React from 'react';
 
 interface CommentEditProps {
     token: string,
-    fetchComments: any,
+    // fetchComments: any,
     handleEditCancel: any,
     commentToUpdate: any,
+    fetchFavoriteGames: any,
 };
 
 interface CommentEditState {
@@ -49,7 +50,7 @@ export default class CommentEdit extends React.Component<CommentEditProps, Comme
                 'Authorization': this.props.token
             })
         })
-        .then(() => this.props.fetchComments());
+        .then(() => this.props.fetchFavoriteGames());
     }
 
     render() {

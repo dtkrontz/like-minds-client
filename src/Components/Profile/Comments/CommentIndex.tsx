@@ -9,9 +9,10 @@ interface CommentIndexProps {
 
 interface CommentIndexState {
     favoriteGames: [],
-    favoriteGamesComments: [],
+    // favoriteGamesComments: [],
     edit: boolean,
     commentToUpdate: [],
+    add: boolean,
 }
 
 export default class GamesIndex extends React.Component<CommentIndexProps, CommentIndexState> {
@@ -19,15 +20,16 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
         super(props)
         this.state = {
             favoriteGames: [],
-            favoriteGamesComments: [],
-            edit: true,
+            // favoriteGamesComments: [],
+            edit: false,
             commentToUpdate: [],
+            add: false
         }
     };
 
     componentDidMount() {
         this.fetchFavoriteGames();
-        this.fetchComments();
+        // this.fetchComments();
     };
 
     fetchFavoriteGames = () => {
@@ -46,21 +48,21 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
         })
     }
 
-    fetchComments = () => {
-        fetch(`http://localhost:4000/comments/24af7e9a-b200-4cfe-a920-e6115c433c6b`, {
-            method: 'GET',
-            headers: new Headers ({
-                'Content-Type': 'application/json',
-                'Authorization': this.props.token
-            })
-        }).then(res => res.json())
-        .then(json => {
-            this.setState({
-                favoriteGamesComments: json
-            })
-            console.log('favoriteGamesComments', this.state.favoriteGamesComments)
-        })
-    }
+    // fetchComments = () => {
+    //     fetch(`http://localhost:4000/comments/24af7e9a-b200-4cfe-a920-e6115c433c6b`, {
+    //         method: 'GET',
+    //         headers: new Headers ({
+    //             'Content-Type': 'application/json',
+    //             'Authorization': this.props.token
+    //         })
+    //     }).then(res => res.json())
+    //     .then(json => {
+    //         this.setState({
+    //             favoriteGamesComments: json
+    //         })
+    //         console.log('favoriteGamesComments', this.state.favoriteGamesComments)
+    //     })
+    // }
 
     handleEdit = () => {
         this.setState({
@@ -71,6 +73,18 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
     handleEditCancel = () => {
         this.setState({
             edit: false
+        })
+    }
+
+    handleAdd = () => {
+        this.setState({
+            add: true
+        })
+    }
+
+    handleAddCancel = () => {
+        this.setState({
+            add: false
         })
     }
 
@@ -85,8 +99,8 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
             <div>
                 <p>Comment Index - Test</p>
                 <CommentCreate token={this.props.token} />
-                <CommentTable token={this.props.token} fetchFavoriteGames={this.fetchFavoriteGames} favoriteGames={this.state.favoriteGames} favoriteGamesComments={this.state.favoriteGamesComments} fetchComments={this.fetchComments} handleEdit={this.handleEdit} editComment={this.editComment} />
-                {this.state.edit ? <CommentEdit token={this.props.token} fetchComments={this.fetchComments} handleEditCancel={this.handleEditCancel} commentToUpdate={this.state.commentToUpdate} /> : <></>}
+                <CommentTable token={this.props.token} fetchFavoriteGames={this.fetchFavoriteGames} favoriteGames={this.state.favoriteGames} handleEdit={this.handleEdit} editComment={this.editComment} />
+                {this.state.edit ? <CommentEdit token={this.props.token}  handleEditCancel={this.handleEditCancel} commentToUpdate={this.state.commentToUpdate} fetchFavoriteGames={this.fetchFavoriteGames} /> : <></>}
             </div>
         )
     }
