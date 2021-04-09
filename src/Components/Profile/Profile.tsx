@@ -6,6 +6,7 @@ type ProfileProps = {
     token: string,
     userId: string,
     admin: boolean,
+    clearToken: any,
 }
 
 type ProfileState = {
@@ -64,6 +65,7 @@ export default class Profile extends React.Component<ProfileProps, ProfileState>
             <div>
                 <p>Profile - Test</p>
                 <GameOfTheWeek />
+                <button onClick={this.props.clearToken}>Logout</button>
                 {/* <ProfileDisplay /> */}
                 <Navigation token={this.props.token} userId={this.props.userId} admin={this.props.admin} />
             </div>

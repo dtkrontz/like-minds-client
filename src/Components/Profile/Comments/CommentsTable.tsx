@@ -51,8 +51,26 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
         }))
     };
 
+    mapCommentsSort = (): [] => {
+        return (
+            this.props.favoriteGames.sort((a: any, b: any) => {
+            let nameA: string = a.title.toUpperCase();
+            let nameB: string = b.title.toUpperCase();
+            console.log(nameA, nameB);
+            if (nameA < nameB) {
+                return -1;
+            } else if (nameA > nameB) {
+                return 1;
+            } else {
+                return 0;
+            };
+        }))
+    };
+
     commentMap = (result: any,) => {
         console.log(result);
+        console.log(this.props.userId);
+        console.log(this.props.admin);
         // console.log(result.id);
         // console.log(this.props.favoriteGamesComments[index].gameId);
         //game table ID vs comments table gameID
@@ -66,7 +84,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                             <li>{commentResult.content} - {commentResult.user.username}</li>
                             </ul>
                             {/* Ternary to check token id with comment id || admin is true*/}
-                            {this.props.userId === result.comments.userId || this.props.admin ? <div> <button onClick={((e: any) => this.deleteComment(commentResult.id))}>Delete comment</button>
+                            {this.props.userId === result.comments[index].userId || this.props.admin ? <div> <button onClick={((e: any) => this.deleteComment(commentResult.id))}>Delete comment</button>
                             <button  onClick={() => {this.props.editComment(commentResult); this.props.handleEdit()}}>Edit comment - open modal with fields - dialog box</button> </div> : null}
                         </div>
                     );

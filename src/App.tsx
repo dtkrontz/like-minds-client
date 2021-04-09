@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, EffectCallback} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Auth from './Components/Auth/Auth';
@@ -18,11 +18,11 @@ function App() {
     setSessionToken('');
   }
 
-  // useEffect(() => {
-  //   if (localStorage.getItem('token')) {
-  //     setSessionToken((localStorage.getItem('token')));
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      setSessionToken(String(localStorage.getItem('token')));
+    }
+  }, []);
 
 
     // const thingOne =((newToken: any) => {
@@ -37,16 +37,19 @@ function App() {
   }
   
   const setUser = (data: any) => {
-    setUserId(data.id);
-    setAdmin(data.admin);
+    console.log(data);
+    setUserId(data.user.id);
+    setAdmin(data.user.admin);
   }
 
   console.log(sessionToken);
+  console.log(userId);
+  console.log(admin);
 
   const thing: boolean = false;
 
   const protectedViews = () => {
-    return (sessionToken === localStorage.getItem('token') && localStorage.getItem('token') != undefined ? <Profile token={sessionToken} userId={userId} admin={admin} /> : <Auth setUser={setUser} clearToken={clearToken} updateToken={updateToken}/>)
+    return (sessionToken === localStorage.getItem('token') && localStorage.getItem('token') != undefined ? <Profile token={sessionToken} userId={userId} admin={admin} clearToken={clearToken} /> : <Auth setUser={setUser} clearToken={clearToken} updateToken={updateToken}/>)
   };
 
   return (
