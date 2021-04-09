@@ -13,7 +13,8 @@ import CommentsIndex from '../Profile/Comments/CommentIndex';
 
 type NavigationProps = {
     token: string,
-
+    userId: string,
+    admin: boolean,
 }
 
 type NavigationState = {
@@ -41,9 +42,9 @@ export default class Navigation extends React.Component<NavigationProps, Navigat
                 </div>
                 <div>
                     <Switch>
-                        <Route exact path='/profiledisplay'><Profile token={this.props.token} /></Route>
-                        <Route exact path='/gamesindex'><GamesIndex token={this.props.token} /></Route>
-                        <Route exact path='/commentsindex'><CommentsIndex token={this.props.token} /></Route>
+                        <Route exact path='/profiledisplay'><Profile token={this.props.token} userId={this.props.userId} admin={this.props.admin} /></Route>
+                        <Route exact path='/gamesindex'><GamesIndex token={this.props.token} userId={this.props.userId} admin={this.props.admin} /></Route>
+                        <Route exact path='/commentsindex'><CommentsIndex token={this.props.token} userId={this.props.userId} admin={this.props.admin} /></Route>
                     </Switch>
                 </div>
                 </Router>

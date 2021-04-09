@@ -5,6 +5,8 @@ import GameEdit from './GameEdit';
 
 type GameIndexProps = {
     token: string,
+    userId: string,
+    admin: boolean,
 }
 
 type GameIndexState = {

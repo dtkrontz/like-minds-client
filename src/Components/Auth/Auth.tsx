@@ -5,7 +5,8 @@ import GameOfTheWeek from '../GameOfTheWeek/GameofTheWeek';
 
 type AuthProps = {
     updateToken: any,
-    clearToken: any
+    clearToken: any,
+    setUser: any
 }
 
 type AuthState = {
@@ -50,7 +51,7 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
                     <button onClick={this.loginHandler}>Login</button>
                 </div>
                 {this.state.signupOpen ? <Signup updateToken={this.props.updateToken} closeHandler={this.closeHandler} /> : null}
-                {this.state.loginOpen ? <Login updateToken={this.props.updateToken} closeHandler={this.closeHandler}/> : null}
+                {this.state.loginOpen ? <Login updateToken={this.props.updateToken} closeHandler={this.closeHandler} setUser={this.props.setUser} /> : null}
                 {/* <Login updateToken={this.props.updateToken}/> */}
                 {/* <Signup updateToken={this.props.updateToken} /> */}
                 <GameOfTheWeek />

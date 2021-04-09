@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 type LoginProps = {
     updateToken: any
     closeHandler: any
+    setUser: any
 }
 
 type LoginState = {
@@ -50,6 +51,7 @@ export default class Login extends Component<LoginProps, LoginState> {
         .then((response) => response.json())
         .then((data) => {
             this.props.updateToken(data.sessionToken);
+            this.props.setUser(data);
             console.log(data);
         })
     }

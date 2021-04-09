@@ -55,7 +55,7 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
                 'Content-Type': 'application/json',
                 'Authorization': this.props.token
             })
-        }).then(() => this.props.fetchGames())
+        }).then(() => {this.props.fetchGames(); alert('Game Converted To Binary')})
     }
 
     // componentDidMount() {

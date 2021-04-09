@@ -4,6 +4,8 @@ import GameOfTheWeek from '../GameOfTheWeek/GameofTheWeek';
 
 type ProfileProps = {
     token: string,
+    userId: string,
+    admin: boolean,
 }
 
 type ProfileState = {
@@ -63,7 +65,7 @@ export default class Profile extends React.Component<ProfileProps, ProfileState>
                 <p>Profile - Test</p>
                 <GameOfTheWeek />
                 {/* <ProfileDisplay /> */}
-                <Navigation token={this.props.token} />
+                <Navigation token={this.props.token} userId={this.props.userId} admin={this.props.admin} />
             </div>
         )
     }

@@ -3,6 +3,7 @@ import React from 'react';
 type GameCreateProps = {
     gamesList: any,
     token: string,
+    resetSearchState: any,
 }
 
 type GameCreateState = {
@@ -64,7 +65,7 @@ export default class GamesCreate extends React.Component<GameCreateProps, GameCr
                 'Content-Type': 'application/json',
                 'Authorization': this.props.token
             })
-        })
+        }).then(() => {this.props.resetSearchState(); alert('Game Added To Your List!')})
     }
 
     render() {

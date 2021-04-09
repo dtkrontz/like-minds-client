@@ -7,7 +7,9 @@ interface CommentIndexProps {
     // fetchComments: any,
     handleEdit: any,
     handleAdd: any,
-    editComment: any
+    editComment: any,
+    userId: string,
+    admin: boolean,
 }
 
 interface CommentIndexState {
@@ -21,11 +23,14 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
 
     deleteComment = async (id: number) => {
         console.log('delete');
+        console.log(this.props.admin);
+        console.log(`${this.props.admin}`);
         await fetch(`http://localhost:4000/comments/${id}`, {
             method: 'DELETE',
             headers: new Headers ({
                 'Content-Type': 'application/json',
-                'Authorization': this.props.token
+                'Authorization': this.props.token,
+                'Admin': `${this.props.admin}`,
             })
         }).then(() => this.props.fetchFavoriteGames())
     }
@@ -61,8 +66,8 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                             <li>{commentResult.content} - {commentResult.user.username}</li>
                             </ul>
                             {/* Ternary to check token id with comment id || admin is true*/}
-                            <button onClick={((e: any) => this.deleteComment(commentResult.id))}>Delete comment</button>
-                            <button  onClick={() => {this.props.editComment(commentResult); this.props.handleEdit()}}>Edit comment - open modal with fields - dialog box</button>
+                            {this.props.userId === result.comments.userId || this.props.admin ? <div> <button onClick={((e: any) => this.deleteComment(commentResult.id))}>Delete comment</button>
+                            <button  onClick={() => {this.props.editComment(commentResult); this.props.handleEdit()}}>Edit comment - open modal with fields - dialog box</button> </div> : null}
                         </div>
                     );
                 })

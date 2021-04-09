@@ -4,7 +4,8 @@ import GameCreate from './MyGames/GameCreate';
 
 type ProfileProps = {
     token: string,
-
+    userId: string,
+    admin: boolean,
 }
 
 type ProfileState = {
@@ -44,6 +45,13 @@ export default class ProfileDisplay extends React.Component<ProfileProps, Profil
         })
     }
 
+    resetSearchState = () => {
+        this.setState({
+            gamesList: [],
+            searchTerm: '',
+        })
+    }
+
     // componentDidMount() {
     //     this.fetchGames();
     // }
@@ -69,9 +77,9 @@ export default class ProfileDisplay extends React.Component<ProfileProps, Profil
             <div>
                 <p>Profile - Test</p>
                 <GameOfTheWeek />
-                <label>Search Games: <input type='text' placeholder='Game Title' onChange={this.updateSearchTerm} /></label>
+                <label>Search Games: <input type='text' placeholder='Game Title' value={this.state.searchTerm} onChange={this.updateSearchTerm} /></label>
                 <button onClick={this.searchGamesFetch}>Search</button>
-                <GameCreate token={this.props.token} gamesList={this.state.gamesList} />
+                <GameCreate token={this.props.token} gamesList={this.state.gamesList} resetSearchState={this.resetSearchState} />
             </div>
         )
     }
