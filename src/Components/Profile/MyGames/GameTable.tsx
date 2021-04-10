@@ -18,8 +18,10 @@ type GameTableProps = {
     input: string,
     fetchGames: any,
     games: any,
-    handleEdit: any,
-    editGame: any
+    // handleEdit: any,
+    editGame: any,
+    handleClickOpen: any,
+
 }
 
 type GameTableState = {
@@ -151,7 +153,10 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
                                     <Button size="small" color="primary" onClick={((e: any) => this.deleteGame(result.id))}>
                                         Delete Game
                                     </Button>
-                                    <Button size="small" color="primary" onClick={() => {this.props.editGame(result); this.props.handleEdit()}}>
+                                    {/* <Button size="small" color="primary" onClick={() => {this.props.editGame(result); this.props.handleEdit()}}>
+                                        Edit Game
+                                    </Button> */}
+                                    <Button size="small" color="primary" onClick={() => {this.props.editGame(result); this.props.handleClickOpen()}}>
                                         Edit Game
                                     </Button>
                                 </CardActions>

@@ -2,6 +2,7 @@ import React from 'react';
 import GameCreate from './GameCreate';
 import GameTable from './GameTable';
 import GameEdit from './GameEdit';
+import ProfileDisplay from '../ProfileDisplay';
 
 type GameIndexProps = {
     token: string,
@@ -12,8 +13,9 @@ type GameIndexProps = {
 type GameIndexState = {
     games: [],
     input: string,
-    edit: boolean
-    gameToUpdate: []
+    // edit: boolean,
+    gameToUpdate: [],
+    open: boolean,
 }
 
 export default class GamesIndex extends React.Component<GameIndexProps, GameIndexState> {
@@ -22,12 +24,13 @@ export default class GamesIndex extends React.Component<GameIndexProps, GameInde
         this.state = {
             games: [],
             input: '',
-            edit: false,
+            // edit: false,
             gameToUpdate: [],
+            open: false,
         }
     };
 
-    thing: Boolean = false;
+    // thing: Boolean = false;
 
     fetchGames = () => {
         fetch('http://localhost:4000/games/', {
@@ -68,17 +71,17 @@ export default class GamesIndex extends React.Component<GameIndexProps, GameInde
     //     })
     // }
 
-    handleEdit = () => {
-        this.setState({
-            edit: true
-        })
-    }
+    // handleEdit = () => {
+    //     this.setState({
+    //         edit: true
+    //     })
+    // }
 
-    handleEditCancel = () => {
-        this.setState({
-            edit: false
-        })
-    }
+    // handleEditCancel = () => {
+    //     this.setState({
+    //         edit: false
+    //     })
+    // }
 
     editGame = (game: any) => {
         this.setState({
@@ -87,14 +90,27 @@ export default class GamesIndex extends React.Component<GameIndexProps, GameInde
         // console.log(game);
     }
 
+    handleClickOpen = () => {
+        this.setState({
+            open: true
+        })
+    }
+
+    handleClickClose = () => {
+        this.setState({
+            open: false
+        })
+    }
+
     render() {
         return(
             <div>
                 {/* <p>Games Index - Test</p> */}
                 {/* <p>Games Table</p> */}
-                <GameTable token={this.props.token} fetchGames={this.fetchGames} games={this.state.games} input={this.state.input} handleEdit={this.handleEdit} editGame={this.editGame} />
-                <p>Games Edit</p>
-                {this.state.edit ? <GameEdit fetchGames={this.fetchGames} token={this.props.token} handleEditCancel={this.handleEditCancel} gameToUpdate={this.state.gameToUpdate} /> : null}
+                <ProfileDisplay token={this.props.token} userId={this.props.userId} admin={this.props.admin} fetchGames={this.fetchGames} />
+                <GameTable token={this.props.token} fetchGames={this.fetchGames} games={this.state.games} input={this.state.input} editGame={this.editGame} handleClickOpen={this.handleClickOpen} />
+                {/* <p>Games Edit</p> */}
+                {this.state.open ? <GameEdit fetchGames={this.fetchGames} token={this.props.token} gameToUpdate={this.state.gameToUpdate} handleClickOpen={this.handleClickOpen} handleClickClose={this.handleClickClose} open={this.state.open} /> : null}
                 {/* <button onClick={this.searchGamesFetch}>Search</button> */}
                 {/* {this.state.create ? <GameCreate gamesList={this.state.gamesList} /> : null}
                 <GameTable /> */}

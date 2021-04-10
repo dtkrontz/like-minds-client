@@ -1,16 +1,27 @@
 import { Interface } from 'node:readline';
 import React from 'react';
-import GamesIndex from '../MyGames/GameIndex';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 
 interface CommentCreateProps {
     token: string,
     gameId: string,
     fetchFavoriteGames: any,
+    handleClickOpen: any,
+    handleClickClose: any,
+    open: boolean,
 }
 
 interface CommentCreateState {
     content: string,
-    gameId: string
+    gameId: string,
+    open: boolean,
 }
 
 export default class CommentCreate extends React.Component<CommentCreateProps, CommentCreateState> {
@@ -18,7 +29,8 @@ export default class CommentCreate extends React.Component<CommentCreateProps, C
         super(props)
         this.state = {
             content: '',
-            gameId: this.props.gameId // pull this id from somewhere
+            gameId: this.props.gameId, // pull this id from somewhere
+            open: false,
         }
     };
 
@@ -47,11 +59,40 @@ export default class CommentCreate extends React.Component<CommentCreateProps, C
     render() {
         return(
             <div>
-                <p>Comment Create - Test</p>
+                {/* <p>Comment Create - Test</p>
                 <label>Comment: <input type='text' onChange={this.updateContent} /></label>
                 <button onClick={this.addComment}>Add Comment</button>
                 <button>Cancel</button>
-            </div>
+                <div>
+                <Button variant="outlined" color="primary" onClick={this.props.handleClickOpen}>
+        Open form dialog
+      </Button> */}
+                <Dialog open={this.props.open} onClose={this.props.handleClickClose} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Create Comment</DialogTitle>
+                    <DialogContent>
+                    <DialogContentText>
+                        To create a comment, please enter your comment below.
+                    </DialogContentText>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        // id="name"
+                        label="Comment"
+                        type="text"
+                        fullWidth
+                        onChange={this.updateContent}
+                    />
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={this.props.handleClickClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={() => {this.addComment(); this.props.handleClickClose()}} color="primary">
+                        Comment
+                    </Button>
+                    </DialogActions>
+                </Dialog>
+                </div>
         )
     }
 } 

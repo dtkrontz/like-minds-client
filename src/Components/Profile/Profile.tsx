@@ -63,7 +63,7 @@ export default class Profile extends React.Component<ProfileProps, ProfileState>
     render() {
         return(
             <div>
-                <p>Profile - Test</p>
+                {/* <p>Profile - Test</p> */}
                 <GameOfTheWeek />
                 <button onClick={this.props.clearToken}>Logout</button>
                 {/* <ProfileDisplay /> */}

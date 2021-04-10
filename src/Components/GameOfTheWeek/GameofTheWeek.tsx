@@ -8,7 +8,7 @@ export default class GameOfTheWeek extends React.Component {
     render() {
         return(
             <div>
-                <p>Game of the Week - Test</p>
+                {/* <p>Game of the Week - Test</p> */}
             </div>
         )
     }

@@ -6,6 +6,7 @@ type ProfileProps = {
     token: string,
     userId: string,
     admin: boolean,
+    fetchGames: any,
 }
 
 type ProfileState = {
@@ -22,7 +23,7 @@ export default class ProfileDisplay extends React.Component<ProfileProps, Profil
             gamesList: [],
             apiKey: '9df708d3da4e4c31968e89c6491797c2',
             searchTerm: '',
-            create: true,
+            create: false,
         }
     };
 
@@ -48,7 +49,8 @@ export default class ProfileDisplay extends React.Component<ProfileProps, Profil
     resetSearchState = () => {
         this.setState({
             gamesList: [],
-            searchTerm: '',
+            // searchTerm: '',
+            create: false,
         })
     }
 
@@ -75,11 +77,10 @@ export default class ProfileDisplay extends React.Component<ProfileProps, Profil
     render() {
         return(
             <div>
-                <p>Profile - Test</p>
                 <GameOfTheWeek />
                 <label>Search Games: <input type='text' placeholder='Game Title' value={this.state.searchTerm} onChange={this.updateSearchTerm} /></label>
                 <button onClick={this.searchGamesFetch}>Search</button>
-                <GameCreate token={this.props.token} gamesList={this.state.gamesList} resetSearchState={this.resetSearchState} />
+                <GameCreate token={this.props.token} gamesList={this.state.gamesList} resetSearchState={this.resetSearchState} open={this.state.create} handleClickClose={this.resetSearchState} fetchGames={this.props.fetchGames} />
             </div>
         )
     }

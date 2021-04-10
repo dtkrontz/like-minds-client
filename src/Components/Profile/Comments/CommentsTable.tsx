@@ -20,15 +20,18 @@ interface CommentIndexProps {
     editComment: any,
     userId: string,
     admin: boolean,
+    handleClickOpen: any
 }
 
 interface CommentIndexState {
-    favoriteGames: []
+    // favoriteGames: [],
 }
 
 export default class CommentTable extends React.Component<CommentIndexProps, CommentIndexState> {
     constructor (props: any) {
         super(props)
+        this.state = {
+        }
     };
 
     makeStyles() {
@@ -102,11 +105,15 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                     return (
                         <div key={index}>
                             <Typography>
-                            {commentResult.content} - {commentResult.user.username}
+                            <div style={{display: 'flex'}}>
+                                {commentResult.content} - {commentResult.user.username} 
+                                {this.props.userId === result.comments[index].userId || this.props.admin ? <div> <Button size="small" color="primary" onClick={((e: any) => this.deleteComment(commentResult.id))}>D</Button>
+                                <Button size="small" color="primary"  onClick={() => {this.props.editComment(commentResult); this.props.handleEdit()}}>E</Button> </div> : null}
+                            </div>
                             </Typography>
                             <CardActionArea>
-                                {this.props.userId === result.comments[index].userId || this.props.admin ? <div> <Button size="small" color="primary" onClick={((e: any) => this.deleteComment(commentResult.id))}>Delete comment</Button>
-                                <Button size="small" color="primary"  onClick={() => {this.props.editComment(commentResult); this.props.handleEdit()}}>Edit comment - open modal with fields - dialog box</Button> </div> : null}
+                                {/* {this.props.userId === result.comments[index].userId || this.props.admin ? <div> <Button size="small" color="primary" onClick={((e: any) => this.deleteComment(commentResult.id))}>Delete comment</Button>
+                                <Button size="small" color="primary"  onClick={() => {this.props.editComment(commentResult); this.props.handleEdit()}}>Edit comment - open modal with fields - dialog box</Button> </div> : null} */}
                             </CardActionArea>
                             {/* Ternary to check token id with comment id || admin is true*/}
                             
@@ -168,7 +175,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                                     </CardContent>
                                 </CardActionArea>
                                 <CardActions>
-                                    <Button size="small" color="primary" onClick={(e) => this.props.handleAdd(result.id)}>
+                                    <Button size="small" color="primary" onClick={() => {this.props.handleAdd(result.id); this.props.handleClickOpen()}}>
                                         Add Comment
                                     </Button>
                                 </CardActions>

@@ -1,5 +1,11 @@
 import React from 'react';
-import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 type GameEditProps = {
@@ -8,8 +14,11 @@ type GameEditProps = {
     fetchGames: any,
     // result: any,
     // index: any,
-    handleEditCancel: any,
+    // handleEditCancel: any,
     gameToUpdate: any,
+    handleClickOpen: any,
+    handleClickClose: any,
+    open: boolean,
 }
 
 type GameEditState = {
@@ -74,17 +83,55 @@ export default class GamesEdit extends React.Component<GameEditProps, GameEditSt
     render() {
         return(
             <div>
-                <p>Games Edit - Test</p>
             <div>
-                <p>Edit Games</p>
+                {/* <p>Edit Games</p>
                 <label>Review: <input type='text' name='review' value={this.state.review} onChange={this.updateAllInput} /></label>
                 <br />
                 <label>Favorite: <input type='checkbox' checked={this.state.favorite} name='favorite' onChange={(e) => this.handleFavorite(e.target.value)} /></label>
                 <br />
                 <label>Rating: <input type='text' name='rating' value={this.state.rating} onChange={this.updateAllInput} /></label>
                 <br />
-                <button onClick={(() => this.updateGame())}>Submit</button>
-                <button onClick={this.props.handleEditCancel}>Cancel</button>
+                <button onClick={(() => this.updateGame())}>Submit</button> */}
+                {/* <button onClick={this.props.handleEditCancel}>Cancel</button> */}
+            </div>
+            <div>
+            <Dialog open={this.props.open} onClose={this.props.handleClickClose} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Edit Game</DialogTitle>
+                    <DialogContent>
+                    <DialogContentText>
+                        To edit a game, please enter your rating (0-10), a brief review, and mark if this game is your favorite.
+                    </DialogContentText>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        name='rating'
+                        // id="name"
+                        label="Rating"
+                        type="number"
+                        fullWidth
+                        onChange={this.updateAllInput}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        name='review'
+                        // id="name"
+                        label="Review"
+                        type="text"
+                        fullWidth
+                        onChange={this.updateAllInput}
+                    />
+                    <label>Favorite: <input type='checkbox' checked={this.state.favorite} name='favorite' onChange={(e) => this.handleFavorite(e.target.value)} /></label>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={this.props.handleClickClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={() => {this.updateGame(); this.props.handleClickClose()}} color="primary">
+                        Edit
+                    </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
             </div>
         )
