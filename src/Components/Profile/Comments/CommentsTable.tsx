@@ -1,4 +1,14 @@
 import React from 'react';
+import Modal from '@material-ui/core/Modal';
+import { resourceLimits } from 'node:worker_threads';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 interface CommentIndexProps {
     token: string,
@@ -19,6 +29,17 @@ interface CommentIndexState {
 export default class CommentTable extends React.Component<CommentIndexProps, CommentIndexState> {
     constructor (props: any) {
         super(props)
+    };
+
+    makeStyles() {
+        return ({
+        root: {
+          maxWidth: 345,
+        },
+        media: {
+          height: 140,
+        },
+      })
     };
 
     deleteComment = async (id: number) => {
@@ -80,12 +101,15 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                     console.log(index, commentResult);
                     return (
                         <div key={index}>
-                            <ul>
-                            <li>{commentResult.content} - {commentResult.user.username}</li>
-                            </ul>
+                            <Typography>
+                            {commentResult.content} - {commentResult.user.username}
+                            </Typography>
+                            <CardActionArea>
+                                {this.props.userId === result.comments[index].userId || this.props.admin ? <div> <Button size="small" color="primary" onClick={((e: any) => this.deleteComment(commentResult.id))}>Delete comment</Button>
+                                <Button size="small" color="primary"  onClick={() => {this.props.editComment(commentResult); this.props.handleEdit()}}>Edit comment - open modal with fields - dialog box</Button> </div> : null}
+                            </CardActionArea>
                             {/* Ternary to check token id with comment id || admin is true*/}
-                            {this.props.userId === result.comments[index].userId || this.props.admin ? <div> <button onClick={((e: any) => this.deleteComment(commentResult.id))}>Delete comment</button>
-                            <button  onClick={() => {this.props.editComment(commentResult); this.props.handleEdit()}}>Edit comment - open modal with fields - dialog box</button> </div> : null}
+                            
                         </div>
                     );
                 })
@@ -121,11 +145,35 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
     render() {
         return(
             <div>
-                <p>Comment Table - Test</p>
+                <p>FAVORITE GAMES:</p>
                 {this.mapGamesSort().map((result: any, index: any) => {
                     return (
-                        <div key={index}>
-                            <img src={result.image_url} alt='server img' style={{height: '150px'}} />
+                        <div key={index} style={{padding: '15px'}}>
+                            <Card style={{maxWidth: '350px'}}>
+                            <CardActionArea style={{textAlign: 'center'}}>
+                                    <CardMedia component='img' style={{height: '150px'}}
+                                    image={result.image_url}
+                                    title='Favorite Games' />
+                                    <CardContent>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                            {result.title}
+                                        </Typography>
+                                        <Typography>
+                                            Genre: {result.genre}<br />
+                                            System: {result.system} <br />
+                                        </Typography>
+                                        <Typography>
+                                            Comments: {this.commentMap(result)}
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                                <CardActions>
+                                    <Button size="small" color="primary" onClick={(e) => this.props.handleAdd(result.id)}>
+                                        Add Comment
+                                    </Button>
+                                </CardActions>
+                            </Card>
+                            {/* <img src={result.image_url} alt='server img' style={{height: '150px'}} />
                             <h2>{result.title}: <br/> {result.user.username}'s Favorite Game!</h2>
                             <h4>{result.id}</h4>
                             <p>Genre: {result.genre}</p>
@@ -133,7 +181,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                             <p>{result.description}</p>
                             <p>Comments: {this.commentMap(result)}</p>
                             <button onClick={(e) => this.props.handleAdd(result.id)}>Add comment - open modal with fields - dialog box</button>
-                            <hr />
+                            <hr /> */}
                         </div>
                     )
                 })}

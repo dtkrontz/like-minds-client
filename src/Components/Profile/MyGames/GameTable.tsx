@@ -4,7 +4,14 @@ import React, { ChangeEvent } from 'react';
 import Modal from '@material-ui/core/Modal';
 import GameEdit from './GameEdit'
 import { resourceLimits } from 'node:worker_threads';
-
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 type GameTableProps = {
     token: string,
@@ -18,7 +25,6 @@ type GameTableProps = {
 type GameTableState = {
     // games: [],
     input: string,
-    edit: boolean
 }
 
 export default class GamesTable extends React.Component<GameTableProps, GameTableState> {
@@ -27,8 +33,18 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
         this.state = {
             // games: [],
             input: '',
-            edit: false
         }
+    };
+
+    makeStyles() {
+        return ({
+        root: {
+          maxWidth: 345,
+        },
+        media: {
+          height: 140,
+        },
+      })
     };
 
     // fetchGames = () => {
@@ -108,14 +124,38 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
     render() {
         return(
             <div>
-                <p>Games Table - Test</p>
-                <label>Search Saved Games: <input type='text' placeholder='Game Title'  onChange={((e) => this.updateInput(e))} /></label>
+                <p>SAVED GAMES:</p>
+                {/* <label>Search Saved Games: <input type='text' placeholder='Game Title'  onChange={((e) => this.updateInput(e))} /></label> */}
                 {/* {this.props.games.filter((table: any) => table.includes(this.state.input)).map((result: any, index: any) => { */}
                 {this.mapSort().map((result: any, index: any) => {
                     console.log(result);
                     return (
-                        <div key={index}>
-                            <img src={result.image_url} alt='server img' style={{height: '150px'}} />
+                        <div key={index} style={{padding: '15px'}}>
+                            <Card style={{maxWidth: '350px'}}>
+                                <CardActionArea style={{textAlign: 'center'}}>
+                                    <CardMedia component='img' style={{height: '150px'}} image={result.image_url} title='saved Game' />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            {result.title}
+                                        </Typography>
+                                        <Typography >
+                                            Genre: {result.genre} <br />
+                                            System: {result.system} <br />
+                                            Rating: {result.rating} <br />
+                                            Review: {result.review} <br />
+                                            Favorite: {result.favorite ? 'My Favorite Game' : 'Not My Favorite Game'} <br />
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                                <CardActions>
+                                    <Button size="small" color="primary" onClick={((e: any) => this.deleteGame(result.id))}>
+                                        Delete Game
+                                    </Button>
+                                    <Button size="small" color="primary" onClick={() => {this.props.editGame(result); this.props.handleEdit()}}>
+                                        Edit Game
+                                    </Button>
+                                </CardActions>
+                            {/* <img src={result.image_url} alt='server img' style={{height: '150px'}} />
                             <h2>{result.title}</h2>
                             <h4>{result.id}</h4>
                             <p>Genre: {result.genre}</p>
@@ -125,13 +165,42 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
                             <p>Rating: {result.rating}</p>
                             <p>Favorite: {result.favorite ? 'My Favorite Game' : 'Not My Favorite Game'}</p>
                             <button onClick={((e: any) => this.deleteGame(result.id))}>Delete from List</button>
-                            <button onClick={() => {this.props.editGame(result); this.props.handleEdit()}}>Edit Game - open modal with fields - dialog box</button>
+                            <button onClick={() => {this.props.editGame(result); this.props.handleEdit()}}>Edit Game - open modal with fields - dialog box</button> */}
+                            
+                            </Card>
                             {/* {this.state.edit ? <GameEdit fetchGames={this.props.fetchGames} token={this.props.token} handleEditCancel={this.handleEditCancel} result={result} index={index} /> : <div>
                             <button key={index} onClick={this.handleEdit}>Edit Game - open modal with fields - dialog box</button></div>} */}
-                            <hr />
                         </div>
                     )
                 })}
+                {/* <div>
+                <Card style={{maxWidth: '345px',}}>
+      <CardActionArea>
+        <CardMedia
+          style={{maxHeight: '140px'}}
+          image="/static/images/cards/contemplative-reptile.jpg"
+          title="Contemplative Reptile"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            Lizard
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+            across all continents except Antarctica
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary">
+          Share
+        </Button>
+        <Button size="small" color="primary">
+          Learn More
+        </Button>
+      </CardActions>
+    </Card>
+                </div> */}
             </div>
         )
     };
