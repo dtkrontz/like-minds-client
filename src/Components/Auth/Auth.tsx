@@ -45,17 +45,18 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
     render() {
         return(
             <div>
-                <p>Auth - Test</p>
+                <p>Like Minds</p>
                 <div>
                     <button onClick={this.signupHandler}>Signup</button>
                     <button onClick={this.loginHandler}>Login</button>
                 </div>
-                {this.state.signupOpen ? <Signup updateToken={this.props.updateToken} closeHandler={this.closeHandler} /> : null}
-                {this.state.loginOpen ? <Login updateToken={this.props.updateToken} closeHandler={this.closeHandler} setUser={this.props.setUser} /> : null}
+                {this.state.signupOpen ? <Signup updateToken={this.props.updateToken} closeHandler={this.closeHandler} signupOpen={this.state.signupOpen} /> : null}
+                {this.state.loginOpen ? <Login updateToken={this.props.updateToken} closeHandler={this.closeHandler} setUser={this.props.setUser} loginOpen={this.state.loginOpen} /> : null}
                 {/* <Login updateToken={this.props.updateToken}/> */}
                 {/* <Signup updateToken={this.props.updateToken} /> */}
                 <GameOfTheWeek />
-                <button onClick={this.props.clearToken}>Clear Token</button>
+                <p>Where like minds connect!</p>
+                {/* <button onClick={this.props.clearToken}>Clear Token</button> */}
             </div>
         )
     }

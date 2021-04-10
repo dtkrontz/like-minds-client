@@ -1,10 +1,6 @@
 //Map the Get request from the profile.tsx
 
 import React, { ChangeEvent } from 'react';
-import Modal from '@material-ui/core/Modal';
-import GameEdit from './GameEdit'
-import { resourceLimits } from 'node:worker_threads';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -126,7 +122,7 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
     render() {
         return(
             <div>
-                <p>SAVED GAMES:</p>
+                <p>YOUR SAVED GAMES:</p>
                 {/* <label>Search Saved Games: <input type='text' placeholder='Game Title'  onChange={((e) => this.updateInput(e))} /></label> */}
                 {/* {this.props.games.filter((table: any) => table.includes(this.state.input)).map((result: any, index: any) => { */}
                 {this.mapSort().map((result: any, index: any) => {

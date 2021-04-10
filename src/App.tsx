@@ -1,9 +1,8 @@
 import React, {useState, useEffect, EffectCallback} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Auth from './Components/Auth/Auth';
 import Profile from './Components/Profile/Profile';
-import { setSyntheticLeadingComments } from 'typescript';
+
 
 
 
@@ -30,7 +29,7 @@ function App() {
     // })
   
 
-  const updateToken = (newToken: any) => {
+  const updateToken = (newToken: string) => {
     console.log(newToken);
     localStorage.setItem('token', newToken);
     setSessionToken(newToken);
@@ -46,7 +45,7 @@ function App() {
   console.log(userId);
   console.log(admin);
 
-  const thing: boolean = false;
+  // const thing: boolean = false;
 
   const protectedViews = () => {
     return (sessionToken === localStorage.getItem('token') && localStorage.getItem('token') != undefined ? <Profile token={sessionToken} userId={userId} admin={admin} clearToken={clearToken} /> : <Auth setUser={setUser} clearToken={clearToken} updateToken={updateToken}/>)
