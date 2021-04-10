@@ -13,9 +13,9 @@ interface CommentCreateProps {
     token: string,
     gameId: string,
     fetchFavoriteGames: any,
-    handleClickOpen: any,
-    handleClickClose: any,
-    open: boolean,
+    handleClickOpenCreate: any,
+    handleClickCloseCreate: any,
+    openCreate: boolean,
 }
 
 interface CommentCreateState {
@@ -67,7 +67,7 @@ export default class CommentCreate extends React.Component<CommentCreateProps, C
                 <Button variant="outlined" color="primary" onClick={this.props.handleClickOpen}>
         Open form dialog
       </Button> */}
-                <Dialog open={this.props.open} onClose={this.props.handleClickClose} aria-labelledby="form-dialog-title">
+                <Dialog open={this.props.openCreate} onClose={this.props.handleClickCloseCreate} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Create Comment</DialogTitle>
                     <DialogContent>
                     <DialogContentText>
@@ -84,10 +84,10 @@ export default class CommentCreate extends React.Component<CommentCreateProps, C
                     />
                     </DialogContent>
                     <DialogActions>
-                    <Button onClick={this.props.handleClickClose} color="primary">
+                    <Button onClick={this.props.handleClickCloseCreate} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={() => {this.addComment(); this.props.handleClickClose()}} color="primary">
+                    <Button onClick={() => {this.addComment(); this.props.handleClickCloseCreate()}} color="primary">
                         Comment
                     </Button>
                     </DialogActions>

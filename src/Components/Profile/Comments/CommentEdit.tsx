@@ -1,4 +1,11 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 interface CommentEditProps {
     token: string,
@@ -6,6 +13,9 @@ interface CommentEditProps {
     handleEditCancel: any,
     commentToUpdate: any,
     fetchFavoriteGames: any,
+    handleClickOpenEdit: any,
+    handleClickCloseEdit: any,
+    openEdit: boolean,
 };
 
 interface CommentEditState {
@@ -56,10 +66,36 @@ export default class CommentEdit extends React.Component<CommentEditProps, Comme
     render() {
         return(
             <div>
-                <p>Comment Edit - Test</p>
+                <Dialog open={this.props.openEdit} onClose={this.props.handleClickCloseEdit} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Edit Comment</DialogTitle>
+                    <DialogContent>
+                    <DialogContentText>
+                        To edit a comment, please adjust your comment below.
+                    </DialogContentText>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        // id="name"
+                        label="Comment"
+                        type="text"
+                        fullWidth
+                        onChange={this.updateInput}
+                        value={this.state.content}
+                    />
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={this.props.handleClickCloseEdit} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={() => {this.updateComment(); this.props.handleClickCloseEdit()}} color="primary">
+                        Edit
+                    </Button>
+                    </DialogActions>
+                </Dialog>
+                {/* <p>Comment Edit - Test</p>
                 <label>Comment: <input type='text' value={this.state.content} onChange={this.updateInput} /></label>
                 <button onClick={(() => this.updateComment())}>Submit</button>
-                <button onClick={(() => this.props.handleEditCancel())}>Cancel</button>
+                <button onClick={(() => this.props.handleEditCancel())}>Cancel</button> */}
             </div>
         )
     }

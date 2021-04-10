@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import { resourceLimits } from 'node:worker_threads';
-import { makeStyles } from '@material-ui/core/styles';
+import {  } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -20,7 +20,8 @@ interface CommentIndexProps {
     editComment: any,
     userId: string,
     admin: boolean,
-    handleClickOpen: any
+    handleClickOpenCreate: any,
+    handleClickOpenEdit: any,
 }
 
 interface CommentIndexState {
@@ -105,10 +106,10 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                     return (
                         <div key={index}>
                             <Typography>
-                            <div style={{display: 'flex'}}>
+                            <div style={{display: 'flex', justifyContent: 'center'}}>
                                 {commentResult.content} - {commentResult.user.username} 
                                 {this.props.userId === result.comments[index].userId || this.props.admin ? <div> <Button size="small" color="primary" onClick={((e: any) => this.deleteComment(commentResult.id))}>D</Button>
-                                <Button size="small" color="primary"  onClick={() => {this.props.editComment(commentResult); this.props.handleEdit()}}>E</Button> </div> : null}
+                                <Button size="small" color="primary"  onClick={() => {this.props.editComment(commentResult); this.props.handleClickOpenEdit()}}>E</Button> </div> : null}
                             </div>
                             </Typography>
                             <CardActionArea>
@@ -175,7 +176,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                                     </CardContent>
                                 </CardActionArea>
                                 <CardActions>
-                                    <Button size="small" color="primary" onClick={() => {this.props.handleAdd(result.id); this.props.handleClickOpen()}}>
+                                    <Button size="small" color="primary" onClick={() => {this.props.handleAdd(result.id); this.props.handleClickOpenCreate()}}>
                                         Add Comment
                                     </Button>
                                 </CardActions>

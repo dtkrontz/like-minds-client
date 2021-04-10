@@ -15,6 +15,7 @@ type NavigationProps = {
     token: string,
     userId: string,
     admin: boolean,
+    clearToken: any,
     // fetchGames: any,
 }
 
@@ -34,11 +35,12 @@ export default class Navigation extends React.Component<NavigationProps, Navigat
         return(
             <div>
                 <Router>
-                <div>
-                    <ul>
+                <div >
+                    <ul style={{display: 'flex'}}>
                         {/* <li><Link to='/profiledisplay'>Profile Display</Link></li> */}
-                        <li><Link to='/gamesindex'>Games Index</Link></li>
-                        <li><Link to='/commentsindex'>Comments Index</Link></li>
+                        <button style={{textDecoration: 'none'}}><Link to='/gamesindex'>Games Index</Link></button>
+                        <button><Link to='/commentsindex'>Comments Index</Link></button>
+                        <button onClick={this.props.clearToken}>Logout</button>
                     </ul>
                 </div>
                 <div>

@@ -16,7 +16,8 @@ interface CommentIndexState {
     commentToUpdate: [],
     add: boolean,
     gameId: string,
-    open: boolean,
+    openCreate: boolean,
+    openEdit: boolean,
 }
 
 export default class GamesIndex extends React.Component<CommentIndexProps, CommentIndexState> {
@@ -29,7 +30,8 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
             commentToUpdate: [],
             add: false,
             gameId: '',
-            open: false,
+            openCreate: false,
+            openEdit: false,
         }
     };
 
@@ -102,15 +104,27 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
         })
     }
 
-    handleClickOpen = () => {
+    handleClickOpenCreate = () => {
         this.setState({
-            open: true
+            openCreate: true
         })
     }
 
-    handleClickClose = () => {
+    handleClickCloseCreate = () => {
         this.setState({
-            open: false
+            openCreate: false
+        })
+    }
+
+    handleClickOpenEdit = () => {
+        this.setState({
+            openEdit: true
+        })
+    }
+
+    handleClickCloseEdit = () => {
+        this.setState({
+            openEdit: false
         })
     }
 
@@ -118,9 +132,9 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
         return(
             <div>
                 {/* <p>Comment Index - Test</p> */}
-                <CommentTable token={this.props.token} fetchFavoriteGames={this.fetchFavoriteGames} favoriteGames={this.state.favoriteGames} handleEdit={this.handleEdit} handleAdd={this.handleAdd} editComment={this.editComment} userId={this.props.userId} admin={this.props.admin} handleClickOpen={this.handleClickOpen} />
-                {this.state.edit ? <CommentEdit token={this.props.token}  handleEditCancel={this.handleEditCancel} commentToUpdate={this.state.commentToUpdate} fetchFavoriteGames={this.fetchFavoriteGames} /> : null}
-                {this.state.add ? <CommentCreate token={this.props.token} gameId={this.state.gameId} fetchFavoriteGames={this.fetchFavoriteGames} handleClickOpen={this.handleClickOpen} handleClickClose={this.handleClickClose} open={this.state.open} /> : null}
+                <CommentTable token={this.props.token} fetchFavoriteGames={this.fetchFavoriteGames} favoriteGames={this.state.favoriteGames} handleEdit={this.handleEdit} handleAdd={this.handleAdd} editComment={this.editComment} userId={this.props.userId} admin={this.props.admin} handleClickOpenCreate={this.handleClickOpenCreate} handleClickOpenEdit={this.handleClickOpenEdit} />
+                {this.state.openEdit ? <CommentEdit token={this.props.token}  handleEditCancel={this.handleEditCancel} commentToUpdate={this.state.commentToUpdate} fetchFavoriteGames={this.fetchFavoriteGames} handleClickOpenEdit={this.handleClickOpenEdit} handleClickCloseEdit={this.handleClickCloseEdit} openEdit={this.state.openEdit} /> : null}
+                {this.state.openCreate ? <CommentCreate token={this.props.token} gameId={this.state.gameId} fetchFavoriteGames={this.fetchFavoriteGames} handleClickOpenCreate={this.handleClickOpenCreate} handleClickCloseCreate={this.handleClickCloseCreate} openCreate={this.state.openCreate} /> : null}
             </div>
         )
     }

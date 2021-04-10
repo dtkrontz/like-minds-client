@@ -1,6 +1,13 @@
 import React from 'react';
 import Navigation from '../Navigation/Navigation';
 import GameOfTheWeek from '../GameOfTheWeek/GameofTheWeek';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import { textChangeRangeIsUnchanged } from 'typescript';
 
 type ProfileProps = {
     token: string,
@@ -64,9 +71,9 @@ export default class Profile extends React.Component<ProfileProps, ProfileState>
         return(
             <div>
                 {/* <p>Profile - Test</p> */}
-                <button onClick={this.props.clearToken}>Logout</button>
+                {/* <button onClick={this.props.clearToken}>Logout</button> */}
                 {/* <ProfileDisplay /> */}
-                <Navigation token={this.props.token} userId={this.props.userId} admin={this.props.admin} />
+                <Navigation token={this.props.token} userId={this.props.userId} admin={this.props.admin} clearToken={this.props.clearToken} />
                 <GameOfTheWeek />
             </div>
         )
