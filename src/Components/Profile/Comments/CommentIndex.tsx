@@ -130,7 +130,7 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
 
     render() {
         return(
-            <div style={{marginTop: '5vh'}}>
+            <div>
                 {/* <p>Comment Index - Test</p> */}
                 <CommentTable token={this.props.token} fetchFavoriteGames={this.fetchFavoriteGames} favoriteGames={this.state.favoriteGames} handleEdit={this.handleEdit} handleAdd={this.handleAdd} editComment={this.editComment} userId={this.props.userId} admin={this.props.admin} handleClickOpenCreate={this.handleClickOpenCreate} handleClickOpenEdit={this.handleClickOpenEdit} />
                 {this.state.openEdit ? <CommentEdit token={this.props.token}  handleEditCancel={this.handleEditCancel} commentToUpdate={this.state.commentToUpdate} fetchFavoriteGames={this.fetchFavoriteGames} handleClickOpenEdit={this.handleClickOpenEdit} handleClickCloseEdit={this.handleClickCloseEdit} openEdit={this.state.openEdit} /> : null}

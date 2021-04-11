@@ -57,7 +57,7 @@ export default class Signup extends React.Component<SignupProps, SignupState> {
             })
         })
         .then((response) => response.json())
-        .then((data) => {this.props.updateToken(data.sessionToken)
+        .then((data) => {this.props.updateToken(data.sessionToken); alert('Username already in use')
         })
     }
 

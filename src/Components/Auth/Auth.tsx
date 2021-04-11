@@ -3,6 +3,7 @@ import Login from './Login';
 import Signup from './SignUp';
 import GameOfTheWeek from '../GameOfTheWeek/GameofTheWeek';
 import Button from '@material-ui/core/Button';
+import './Auth.css';
 
 type AuthProps = {
     updateToken: any,
@@ -45,7 +46,7 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
 
     render() {
         return(
-            <div>
+            <div className='Auth'>
                 <div className='navbar'>
                     <div>
                         <Button  onClick={this.signupHandler}><p className='navbarButton'>Signup</p></Button>

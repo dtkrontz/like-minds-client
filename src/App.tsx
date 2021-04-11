@@ -37,6 +37,8 @@ function App() {
   
   const setUser = (data: any) => {
     console.log(data);
+    localStorage.setItem('id', data.user.id);
+    localStorage.setItem('admin', data.user.admin);
     setUserId(data.user.id);
     setAdmin(data.user.admin);
   }
@@ -53,9 +55,9 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header"> */}
       {protectedViews()}
-      </header>
+      {/* </header> */}
     </div>
   );
 }

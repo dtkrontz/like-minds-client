@@ -10,6 +10,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 
 
 interface CommentIndexProps {
@@ -57,7 +58,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
             headers: new Headers ({
                 'Content-Type': 'application/json',
                 'Authorization': this.props.token,
-                'Admin': `${this.props.admin}`,
+                'Admin': `${localStorage.admin}`,
             })
         }).then(() => this.props.fetchFavoriteGames())
     }
@@ -109,8 +110,8 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                         <div key={index}>
                             <Typography>
                             <div style={{display: 'flex', justifyContent: 'center'}}>
-                                <Typography style={{overflowWrap: 'normal'}}>{commentResult.content} - {commentResult.user.username}</Typography>
-                                {this.props.userId === result.comments[index].userId || this.props.admin ? <div> <Button size="small" color="primary" onClick={((e: any) => this.deleteComment(commentResult.id))}>D</Button>
+                                <Box display='flex' flexWrap='wrap'><Typography style={{overflowWrap: 'normal'}}>{commentResult.content} - {commentResult.user.username}</Typography></Box>
+                                {localStorage.id === result.comments[index].userId || localStorage.admin === 'true' ? <div> <Button size="small" color="primary" onClick={((e: any) => this.deleteComment(commentResult.id))}>D</Button>
                                 <Button size="small" color="primary"  onClick={() => {this.props.editComment(commentResult); this.props.handleClickOpenEdit()}}>E</Button> </div> : null}
                             </div>
                             </Typography>
