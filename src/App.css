@@ -43,6 +43,6 @@
   position: fixed;
   top: 0;
   z-index: 1;
-  margin: auto;
+  margin: 0;
   height: 5vh;
 }
