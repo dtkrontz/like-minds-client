@@ -1,6 +1,7 @@
 //Map the Get request from the profile.tsx
 
 import React, { ChangeEvent } from 'react';
+import APIURL from '../../../helpers/environment';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -66,7 +67,7 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
 
     deleteGame = async (id: number) => {
         console.log(id);
-        await fetch(`http://localhost:4000/games/${id}`, {
+        await fetch(`${APIURL}/games/${id}`, {
             method: 'DELETE',
             headers: new Headers ({
                 'Content-Type': 'application/json',

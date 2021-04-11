@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../../helpers/environment';
 import GameCreate from './GameCreate';
 import GameTable from './GameTable';
 import GameEdit from './GameEdit';
@@ -33,7 +34,7 @@ export default class GamesIndex extends React.Component<GameIndexProps, GameInde
     // thing: Boolean = false;
 
     fetchGames = () => {
-        fetch('http://localhost:4000/games/', {
+        fetch(`${APIURL}/games/`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',

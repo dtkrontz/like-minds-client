@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../../helpers/environment';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -54,7 +55,7 @@ export default class GamesEdit extends React.Component<GameEditProps, GameEditSt
     };
 
     updateGame = () => {
-        fetch(`http://localhost:4000/games/${this.props.gameToUpdate.id}`, {
+        fetch(`${APIURL}/games/${this.props.gameToUpdate.id}`, {
             method: 'PUT',
             body: JSON.stringify({games: {
                 review: this.state.review,

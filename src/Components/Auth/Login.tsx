@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import APIURL from '../../helpers/environment';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -42,7 +43,7 @@ export default class Login extends Component<LoginProps, LoginState> {
 
     handleSubmit = async (event: any) => {
         event.preventDefault();
-        await fetch('http://localhost:4000/auth/login', {
+        await fetch(`${APIURL}/auth/login`, {
             method: 'POST',
             body: JSON.stringify(
                 {user: 

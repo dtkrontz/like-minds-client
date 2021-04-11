@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../../helpers/environment';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -48,7 +49,7 @@ export default class CommentEdit extends React.Component<CommentEditProps, Comme
 
     updateComment = () => {
         console.log('update');
-        fetch(`http://localhost:4000/comments/${this.props.commentToUpdate.id}`, {
+        fetch(`${APIURL}/comments/${this.props.commentToUpdate.id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 comment: {

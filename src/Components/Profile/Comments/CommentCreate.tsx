@@ -1,5 +1,6 @@
 import { Interface } from 'node:readline';
 import React from 'react';
+import APIURL from '../../../helpers/environment';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -41,7 +42,7 @@ export default class CommentCreate extends React.Component<CommentCreateProps, C
     }
 
     addComment = () => {
-        fetch('http://localhost:4000/comments/comment', {
+        fetch(`${APIURL}/comments/comment`, {
             method: 'POST',
             body: JSON.stringify({
                 comment: {

@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../helpers/environment';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -42,7 +43,7 @@ export default class Signup extends React.Component<SignupProps, SignupState> {
     handleSubmit = (event: any) => {
         event.preventDefault();
         // console.log(username, password);
-        fetch('http://localhost:4000/auth/register', {
+        fetch(`${APIURL}/auth/register`, {
             method: 'POST',
             body: JSON.stringify(
                 {user:

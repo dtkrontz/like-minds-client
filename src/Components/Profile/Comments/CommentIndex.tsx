@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../../helpers/environment';
 import CommentCreate from './CommentCreate';
 import CommentTable from './CommentsTable';
 import CommentEdit from './CommentEdit';
@@ -41,7 +42,7 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
     };
 
     fetchFavoriteGames = () => {
-        fetch('http://localhost:4000/comments/', {
+        fetch(`${APIURL}/comments/`, {
             method: 'GET',
             headers: new Headers ({
                 'Content-Type': 'application/json',

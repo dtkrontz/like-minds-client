@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../../helpers/environment';
 import Modal from '@material-ui/core/Modal';
 import { resourceLimits } from 'node:worker_threads';
 import { makeStyles } from '@material-ui/core/styles';
@@ -64,7 +65,7 @@ export default class GamesCreate extends React.Component<GameCreateProps, GameCr
                 review: '',
             })
         })
-        fetch('http://localhost:4000/games/', {
+        fetch(`${APIURL}/games/`, {
             method: 'POST',
             body: JSON.stringify({games: {
                 title: this.state.title,

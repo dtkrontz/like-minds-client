@@ -1,4 +1,5 @@
 import React from 'react';
+import APIURL from '../../../helpers/environment';
 import Modal from '@material-ui/core/Modal';
 import { resourceLimits } from 'node:worker_threads';
 import {  } from '@material-ui/core/styles';
@@ -53,7 +54,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
         console.log('delete');
         console.log(this.props.admin);
         console.log(`${this.props.admin}`);
-        await fetch(`http://localhost:4000/comments/${id}`, {
+        await fetch(`${APIURL}/comments/${id}`, {
             method: 'DELETE',
             headers: new Headers ({
                 'Content-Type': 'application/json',
