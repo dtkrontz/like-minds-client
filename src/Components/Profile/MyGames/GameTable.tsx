@@ -134,10 +134,10 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
                 {this.mapSort().map((result: any, index: any) => {
                     console.log(result);
                     return (
-                            <Grid container xs={12} sm={5} justify='center' spacing={0} max-width='400px'>
+                        <Grid container xs={12} sm={5} justify='center' spacing={0} max-width='400px'>
                         <div key={index} style={{padding: '15px'}}>
                             <Card style={{maxWidth: '350px'}}>
-                                <CardActionArea style={{textAlign: 'center'}}>
+                            <CardActionArea style={{textAlign: 'center'}}>
                                     <CardMedia component='img' style={{height: '150px'}} image={result.image_url} title='saved Game' />
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="h2">
@@ -179,7 +179,7 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
                             {/* {this.state.edit ? <GameEdit fetchGames={this.props.fetchGames} token={this.props.token} handleEditCancel={this.handleEditCancel} result={result} index={index} /> : <div>
                             <button key={index} onClick={this.handleEdit}>Edit Game - open modal with fields - dialog box</button></div>} */}
                         </div>
-                            </Grid>
+                    </Grid>
                     )
                 })}
                 {/* <div>

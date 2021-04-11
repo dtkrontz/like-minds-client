@@ -109,7 +109,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                         <div key={index}>
                             <Typography>
                             <div style={{display: 'flex', justifyContent: 'center'}}>
-                                <Typography style={{overflowWrap: 'normal', maxWidth: '340'}}>{commentResult.content} - {commentResult.user.username}</Typography>
+                                <Typography style={{overflowWrap: 'normal'}}>{commentResult.content} - {commentResult.user.username}</Typography>
                                 {this.props.userId === result.comments[index].userId || this.props.admin ? <div> <Button size="small" color="primary" onClick={((e: any) => this.deleteComment(commentResult.id))}>D</Button>
                                 <Button size="small" color="primary"  onClick={() => {this.props.editComment(commentResult); this.props.handleClickOpenEdit()}}>E</Button> </div> : null}
                             </div>
@@ -205,3 +205,4 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
         )
     }
 } 
+
