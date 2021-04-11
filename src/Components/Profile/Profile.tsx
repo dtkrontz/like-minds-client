@@ -1,6 +1,7 @@
 import React from 'react';
 import Navigation from '../Navigation/Navigation';
 import GameOfTheWeek from '../GameOfTheWeek/GameofTheWeek';
+import ProfileDisplay from './ProfileDisplay';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -24,7 +25,6 @@ export default class Profile extends React.Component<ProfileProps, ProfileState>
     constructor (props: any) {
         super(props)
         this.state = {
-            
         }
     };
 
@@ -72,9 +72,10 @@ export default class Profile extends React.Component<ProfileProps, ProfileState>
             <div>
                 {/* <p>Profile - Test</p> */}
                 {/* <button onClick={this.props.clearToken}>Logout</button> */}
-                {/* <ProfileDisplay /> */}
+                {/* <ProfileDisplay/> */}
                 <Navigation token={this.props.token} userId={this.props.userId} admin={this.props.admin} clearToken={this.props.clearToken} />
                 <GameOfTheWeek />
+                
             </div>
         )
     }
