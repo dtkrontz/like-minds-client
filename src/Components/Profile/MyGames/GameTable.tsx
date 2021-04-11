@@ -8,6 +8,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+
 
 type GameTableProps = {
     token: string,
@@ -121,13 +124,17 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
 
     render() {
         return(
-            <div>
-                <p>YOUR SAVED GAMES:</p>
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+                <Grid container justify='center'>
+                    <Grid item xs={12}>
+                        <h4>YOUR SAVED GAMES:</h4>
+                    </Grid>
                 {/* <label>Search Saved Games: <input type='text' placeholder='Game Title'  onChange={((e) => this.updateInput(e))} /></label> */}
                 {/* {this.props.games.filter((table: any) => table.includes(this.state.input)).map((result: any, index: any) => { */}
                 {this.mapSort().map((result: any, index: any) => {
                     console.log(result);
                     return (
+                            <Grid container xs={12} sm={5} justify='center' spacing={0} max-width='400px'>
                         <div key={index} style={{padding: '15px'}}>
                             <Card style={{maxWidth: '350px'}}>
                                 <CardActionArea style={{textAlign: 'center'}}>
@@ -172,6 +179,7 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
                             {/* {this.state.edit ? <GameEdit fetchGames={this.props.fetchGames} token={this.props.token} handleEditCancel={this.handleEditCancel} result={result} index={index} /> : <div>
                             <button key={index} onClick={this.handleEdit}>Edit Game - open modal with fields - dialog box</button></div>} */}
                         </div>
+                            </Grid>
                     )
                 })}
                 {/* <div>
@@ -202,6 +210,7 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
       </CardActions>
     </Card>
                 </div> */}
+                </Grid>
             </div>
         )
     };

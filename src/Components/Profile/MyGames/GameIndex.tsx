@@ -104,7 +104,7 @@ export default class GamesIndex extends React.Component<GameIndexProps, GameInde
 
     render() {
         return(
-            <div>
+            <div style={{marginTop: '5vh'}}>
                 {/* <p>Games Index - Test</p> */}
                 {/* <p>Games Table</p> */}
                 <ProfileDisplay token={this.props.token} userId={this.props.userId} admin={this.props.admin} fetchGames={this.fetchGames} />

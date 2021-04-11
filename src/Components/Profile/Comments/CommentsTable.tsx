@@ -9,6 +9,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+
 
 interface CommentIndexProps {
     token: string,
@@ -107,7 +109,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                         <div key={index}>
                             <Typography>
                             <div style={{display: 'flex', justifyContent: 'center'}}>
-                                {commentResult.content} - {commentResult.user.username} 
+                                <Typography style={{overflowWrap: 'normal', maxWidth: '340'}}>{commentResult.content} - {commentResult.user.username}</Typography>
                                 {this.props.userId === result.comments[index].userId || this.props.admin ? <div> <Button size="small" color="primary" onClick={((e: any) => this.deleteComment(commentResult.id))}>D</Button>
                                 <Button size="small" color="primary"  onClick={() => {this.props.editComment(commentResult); this.props.handleClickOpenEdit()}}>E</Button> </div> : null}
                             </div>
@@ -152,10 +154,14 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
 
     render() {
         return(
-            <div>
-                <p>FAVORITE GAMES:</p>
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+                <Grid container justify='center'>
+                    <Grid item xs={12}>
+                        <h4>FAVORITE GAMES:</h4>
+                    </Grid>
                 {this.mapGamesSort().map((result: any, index: any) => {
                     return (
+                        <Grid container xs={12} sm={5} justify='center' spacing={0} max-width='400px'>
                         <div key={index} style={{padding: '15px'}}>
                             <Card style={{maxWidth: '350px'}}>
                             <CardActionArea style={{textAlign: 'center'}}>
@@ -191,13 +197,11 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                             <button onClick={(e) => this.props.handleAdd(result.id)}>Add comment - open modal with fields - dialog box</button>
                             <hr /> */}
                         </div>
+                    </Grid>
                     )
                 })}
+                </Grid>
             </div>
-            // <div>
-            //     <p>Comments</p>
-            //     <p>Comments: {this.commentMap()}</p>
-            // </div>
         )
     }
 } 

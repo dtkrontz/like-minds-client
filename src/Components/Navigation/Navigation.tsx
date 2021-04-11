@@ -35,11 +35,11 @@ export default class Navigation extends React.Component<NavigationProps, Navigat
         return(
             <div>
                 <Router>
-                <div >
-                    <ul style={{display: 'flex'}}>
+                <div className='navbar'>
+                    <ul>
                         {/* <li><Link to='/profiledisplay'>Profile Display</Link></li> */}
-                        <button style={{textDecoration: 'none'}}><Link to='/gamesindex'>Games Index</Link></button>
-                        <button><Link to='/commentsindex'>Comments Index</Link></button>
+                        <button><Link to='/gamesindex' style={{textDecoration: 'none'}}>Games Index</Link></button>
+                        <button><Link to='/commentsindex' style={{textDecoration: 'none'}}>Comments Index</Link></button>
                         <button onClick={this.props.clearToken}>Logout</button>
                     </ul>
                 </div>
