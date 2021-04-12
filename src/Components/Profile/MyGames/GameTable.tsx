@@ -12,16 +12,17 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import { IGameResult } from '../../Interfaces';
 
 
 type GameTableProps = {
     token: string,
     input: string,
-    fetchGames: any,
-    games: any,
+    fetchGames: () => void,
+    games: IGameResult[],
     // handleEdit: any,
-    editGame: any,
-    handleClickOpen: any,
+    editGame: (game: IGameResult) => void,
+    handleClickOpen: () => void,
 
 }
 
@@ -31,7 +32,7 @@ type GameTableState = {
 }
 
 export default class GamesTable extends React.Component<GameTableProps, GameTableState> {
-    constructor (props: any) {
+    constructor (props: GameTableProps) {
         super(props)
         this.state = {
             // games: [],
@@ -108,7 +109,7 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
     //     )
     // }
 
-    mapSort = (): [] => {
+    mapSort = (): IGameResult[] => {
         return (
             this.props.games.sort((a: any, b: any) => {
             let nameA: string = a.title.toUpperCase();
@@ -133,7 +134,7 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
                     </Grid>
                 {/* <label>Search Saved Games: <input type='text' placeholder='Game Title'  onChange={((e) => this.updateInput(e))} /></label> */}
                 {/* {this.props.games.filter((table: any) => table.includes(this.state.input)).map((result: any, index: any) => { */}
-                {this.mapSort().map((result: any, index: any) => {
+                {this.mapSort().map((result: IGameResult, index: number) => {
                     console.log(result);
                     return (
                         <Grid container xs={12} sm={5} justify='center' spacing={0} max-width='400px'>

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {ChangeEvent, Component, SyntheticEvent} from 'react';
 import APIURL from '../../helpers/environment';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -7,12 +7,13 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import {IData} from '../Interfaces';
 
 type LoginProps = {
-    updateToken: any,
-    closeHandler: any,
-    setUser: any,
-    loginOpen: any,
+    updateToken: (newToken: string) => void,
+    closeHandler: () => void,
+    setUser: (data: IData) => void,
+    loginOpen: boolean,
 }
 
 type LoginState = {
@@ -21,7 +22,7 @@ type LoginState = {
 }
 
 export default class Login extends Component<LoginProps, LoginState> {
-    constructor (props: any) {
+    constructor (props: LoginProps) {
         super(props)
         this.state ={
             username: '',
@@ -29,19 +30,19 @@ export default class Login extends Component<LoginProps, LoginState> {
         }
     };
 
-    updateUsername = (e: any) => {
+    updateUsername = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState(
             {username: e.target.value}
         )
     };
 
-    updatePassword =(e: any) => {
+    updatePassword =(e: ChangeEvent<HTMLInputElement>) => {
         this.setState(
             {password: e.target.value}
         )
     };
 
-    handleSubmit = async (event: any) => {
+    handleSubmit = async (event: SyntheticEvent) => {
         event.preventDefault();
         await fetch(`${APIURL}/auth/login`, {
             method: 'POST',

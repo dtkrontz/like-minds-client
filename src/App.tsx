@@ -1,9 +1,9 @@
-import React, {useState, useEffect, EffectCallback} from 'react';
+import React, {useState, useEffect, EffectCallback, SyntheticEvent} from 'react';
 import './App.css';
 import Auth from './Components/Auth/Auth';
 import Profile from './Components/Profile/Profile';
 import Navigation from './Components/Navigation/Navigation';
-
+import {IData} from './Components/Interfaces';
 
 
 
@@ -36,12 +36,12 @@ function App() {
     setSessionToken(newToken);
   }
   
-  const setUser = (data: any) => {
+  const setUser = (data: IData) => {
     console.log(data);
     localStorage.setItem('id', data.user.id);
     localStorage.setItem('admin', data.user.admin);
-    setUserId(data.user.id);
-    setAdmin(data.user.admin);
+    // setUserId(data.user.id);
+    // setAdmin(data.user.admin);
   }
 
   console.log(sessionToken);

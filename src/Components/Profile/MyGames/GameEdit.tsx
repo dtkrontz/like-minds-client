@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SyntheticEvent, ChangeEvent } from 'react';
 import APIURL from '../../../helpers/environment';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -7,18 +7,18 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import {IGameResult} from '../../Interfaces';
 
 type GameEditProps = {
     // handleEditCancel: any
-    token: any,
-    fetchGames: any,
     // result: any,
     // index: any,
     // handleEditCancel: any,
-    gameToUpdate: any,
-    handleClickOpen: any,
-    handleClickClose: any,
+    token: string,
+    fetchGames: () => void,
+    gameToUpdate: IGameResult,
+    handleClickOpen: () => void,
+    handleClickClose: () => void,
     open: boolean,
 }
 
@@ -30,7 +30,7 @@ type GameEditState = {
 }
 
 export default class GamesEdit extends React.Component<GameEditProps, GameEditState> {
-    constructor (props: any) {
+    constructor (props: GameEditProps) {
         super(props)
         this.state = {
             edit: false,
@@ -45,7 +45,7 @@ export default class GamesEdit extends React.Component<GameEditProps, GameEditSt
         // console.log(this.props.result);
     }
 
-    updateAllInput = (e: any) => {
+    updateAllInput = (e: ChangeEvent<HTMLInputElement>) => {
         console.log(typeof(e));
         const value = e.target.value;
         this.setState({
@@ -70,7 +70,7 @@ export default class GamesEdit extends React.Component<GameEditProps, GameEditSt
         .then(() => this.props.fetchGames())
     };
 
-    handleFavorite = (e: any) => {
+    handleFavorite = (e: string) => {
         this.state.favorite ? 
         this.setState({
             favorite: false
@@ -111,6 +111,8 @@ export default class GamesEdit extends React.Component<GameEditProps, GameEditSt
                         type="number"
                         fullWidth
                         onChange={this.updateAllInput}
+                        InputProps={{inputProps: {min: 0, max: 10}}}
+                        value={this.state.rating}
                     />
                     <TextField
                         autoFocus
@@ -121,6 +123,8 @@ export default class GamesEdit extends React.Component<GameEditProps, GameEditSt
                         type="text"
                         fullWidth
                         onChange={this.updateAllInput}
+                        InputProps={{inputProps: {maxlength: 10}}}
+                        value={this.state.review}
                     />
                     <label>Favorite: <input type='checkbox' checked={this.state.favorite} name='favorite' onChange={(e) => this.handleFavorite(e.target.value)} /></label>
                     </DialogContent>

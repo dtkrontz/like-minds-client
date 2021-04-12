@@ -1,29 +1,39 @@
-import React from 'react';
+import React, { SyntheticEvent, ChangeEvent } from 'react';
 import './Profile.css';
 import GameOfTheWeek from '../GameOfTheWeek/GameofTheWeek';
 import GameCreate from './MyGames/GameCreate';
 import Button from '@material-ui/core/Button';
-
+import {IGameResult} from '../Interfaces';
 
 type ProfileProps = {
     token: string,
     userId: string,
     admin: boolean,
-    fetchGames: any,
+    fetchGames: () => void,
 }
 
 type ProfileState = {
-    gamesList: [],
+    gamesList: IGameResult[],
     apiKey: string,
     searchTerm: string,
     create: boolean,
 }
 
 export default class ProfileDisplay extends React.Component<ProfileProps, ProfileState> {
-    constructor (props: any) {
+    constructor (props: ProfileProps) {
         super(props)
         this.state = {
             gamesList: [],
+            // {
+            //     image_url: '',
+            //     title: '',
+            //     genre: '',
+            //     system: '',
+            //     rating: 0,
+            //     review: '',
+            //     favorite: false,
+            //     id: 0,
+            // },
             apiKey: '9df708d3da4e4c31968e89c6491797c2',
             searchTerm: '',
             create: false,
@@ -43,7 +53,7 @@ export default class ProfileDisplay extends React.Component<ProfileProps, Profil
         console.log(this.state.gamesList);
     }
 
-    updateSearchTerm = (e: any) => {
+    updateSearchTerm = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({
             searchTerm: e.target.value
         })

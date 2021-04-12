@@ -4,6 +4,7 @@ import GameCreate from './GameCreate';
 import GameTable from './GameTable';
 import GameEdit from './GameEdit';
 import ProfileDisplay from '../ProfileDisplay';
+import {IGameResult} from '../../Interfaces';
 
 type GameIndexProps = {
     token: string,
@@ -12,21 +13,30 @@ type GameIndexProps = {
 }
 
 type GameIndexState = {
-    games: [],
+    games: IGameResult[],
     input: string,
     // edit: boolean,
-    gameToUpdate: [],
+    // gameToUpdate: IGameToUpdate[],
+    gameToUpdate: IGameResult,
     open: boolean,
 }
 
 export default class GamesIndex extends React.Component<GameIndexProps, GameIndexState> {
-    constructor (props: any) {
+    constructor (props: GameIndexProps) {
         super(props)
         this.state = {
             games: [],
             input: '',
-            // edit: false,
-            gameToUpdate: [],
+            gameToUpdate: {
+                image_url: '',
+                title: '',
+                genre: '',
+                system: '',
+                rating: 0,
+                review: '',
+                favorite: false,
+                id: 0,
+            },
             open: false,
         }
     };
@@ -84,11 +94,11 @@ export default class GamesIndex extends React.Component<GameIndexProps, GameInde
     //     })
     // }
 
-    editGame = (game: any) => {
+    editGame = (game: IGameResult) => {
         this.setState({
             gameToUpdate: game
         })
-        // console.log(game);
+        console.log(game);
     }
 
     handleClickOpen = () => {

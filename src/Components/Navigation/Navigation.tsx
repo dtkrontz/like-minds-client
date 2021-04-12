@@ -20,33 +20,33 @@ type NavigationProps = {
     token: string,
     userId: string,
     admin: boolean,
-    clearToken: any,
+    clearToken: () => void,
     // fetchGames: any,
 }
 
 type NavigationState = {
-    stateanchorEl: boolean,
+    // stateanchorEl: boolean,
 }
 
 export default class Navigation extends React.Component<NavigationProps, NavigationState> {
-    constructor (props: any) {
+    constructor (props: NavigationProps) {
         super(props)
         this.state = {
-            stateanchorEl: false
+            // stateanchorEl: false
         }
     };
 
-    handleClick = () => {
-        this.setState({
-            stateanchorEl: true
-        })
-    }
+    // handleClick = () => {
+    //     this.setState({
+    //         stateanchorEl: true
+    //     })
+    // }
 
-    handleClose =() => {
-        this.setState({
-            stateanchorEl: false
-        })
-    }
+    // handleClose =() => {
+    //     this.setState({
+    //         stateanchorEl: false
+    //     })
+    // }
 
     render() {
         return(

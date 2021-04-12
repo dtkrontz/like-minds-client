@@ -4,11 +4,12 @@ import Signup from './SignUp';
 import GameOfTheWeek from '../GameOfTheWeek/GameofTheWeek';
 import Button from '@material-ui/core/Button';
 import './Auth.css';
+import {IData} from '../Interfaces';
 
 type AuthProps = {
-    updateToken: any,
-    clearToken: any,
-    setUser: any
+    updateToken: (newToken: string) => void,
+    clearToken: () => void,
+    setUser: (data: IData) => void,
 }
 
 type AuthState = {
@@ -17,7 +18,7 @@ type AuthState = {
 }
 
 export default class Auth extends React.Component<AuthProps, AuthState> {
-    constructor (props: any) {
+    constructor (props: AuthProps) {
         super(props)
         this.state = {
             signupOpen: false,

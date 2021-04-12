@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent, Component, SyntheticEvent} from 'react';
 import APIURL from '../../helpers/environment';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -7,12 +7,13 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import {IData} from '../Interfaces';
 
 type SignupProps = {
-    updateToken: any,
-    closeHandler: any,
-    signupOpen: any,
-    setUser: any
+    updateToken: (newToken: string) => void,
+    closeHandler: () => void,
+    signupOpen: boolean,
+    setUser: (data: IData) => void,
 }
 
 type SignupState = {
@@ -20,7 +21,7 @@ type SignupState = {
     password: string,
 }
 
-export default class Signup extends React.Component<SignupProps, SignupState> {
+export default class Signup extends Component<SignupProps, SignupState> {
     constructor (props: SignupProps) {
         super(props)
         this.state ={
@@ -29,19 +30,19 @@ export default class Signup extends React.Component<SignupProps, SignupState> {
         }
     };
 
-    updateUsername = (e: any) => {
+    updateUsername = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState(
             {username: e.target.value}
         )
     };
 
-    updatePassword =(e: any) => {
+    updatePassword =(e: ChangeEvent<HTMLInputElement>) => {
         this.setState(
             {password: e.target.value}
         )
     };
 
-    handleSubmit = (event: any) => {
+    handleSubmit = (event: SyntheticEvent) => {
         event.preventDefault();
         // console.log(username, password);
         fetch(`${APIURL}/auth/register`, {
