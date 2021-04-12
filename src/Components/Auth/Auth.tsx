@@ -53,15 +53,15 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
                         <Button className='navbarButton' onClick={this.loginHandler}><p className='navbarButton'>Login</p></Button>
                     </div>
                 </div>
-                <div>
-                    <h1 style={{fontSize: '150px'}}>Like Minds</h1>
+                <div className='AuthBackground'>
+                    {/* <h1 style={{fontSize: '150px'}}>Like Minds</h1>
+                    <h3>Where like minds connect!</h3> */}
                 </div>
-                {this.state.signupOpen ? <Signup updateToken={this.props.updateToken} closeHandler={this.closeHandler} signupOpen={this.state.signupOpen} /> : null}
+                {this.state.signupOpen ? <Signup updateToken={this.props.updateToken} closeHandler={this.closeHandler} signupOpen={this.state.signupOpen} setUser={this.props.setUser} /> : null}
                 {this.state.loginOpen ? <Login updateToken={this.props.updateToken} closeHandler={this.closeHandler} setUser={this.props.setUser} loginOpen={this.state.loginOpen} /> : null}
                 {/* <Login updateToken={this.props.updateToken}/> */}
                 {/* <Signup updateToken={this.props.updateToken} /> */}
                 <GameOfTheWeek />
-                <h3>Where like minds connect!</h3>
                 {/* <button onClick={this.props.clearToken}>Clear Token</button> */}
             </div>
         )

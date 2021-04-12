@@ -2,12 +2,23 @@
     color: white;
 }
 
+.AuthBackground {
+  background-image: url('../../assets/likeMinds.png');
+  background-size: 90%;
+  background-repeat: no-repeat;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+  margin: auto;
+  background-position: center;
+}
+
 body {
     background-color: #282c34;
 }
 
 .navbar {
-    background-color:  #282c34c9;
+    /* background-color:  #282c34c9; */
     width: 100%;
     position: fixed;
     top: 0;
@@ -21,4 +32,10 @@ body {
     text-decoration: none;
     font-size: 20px;
     color: white;
+    font-family: jaf-mashine, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    margin: 0;
+    padding-top: 8px;
+    padding-left: 10px;
   }

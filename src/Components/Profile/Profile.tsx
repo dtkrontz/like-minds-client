@@ -75,7 +75,6 @@ export default class Profile extends React.Component<ProfileProps, ProfileState>
                 {/* <ProfileDisplay/> */}
                 <Navigation token={this.props.token} userId={this.props.userId} admin={this.props.admin} clearToken={this.props.clearToken} />
                 <GameOfTheWeek />
-                
             </div>
         )
     }

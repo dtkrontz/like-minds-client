@@ -1,8 +1,10 @@
 import React from 'react';
+import './Navigation.css';
 import {
     Route,
     Link,
     Switch,
+    Redirect,
 } from 'react-router-dom';
 import {
     BrowserRouter as Router,
@@ -51,7 +53,7 @@ export default class Navigation extends React.Component<NavigationProps, Navigat
             <div>
                 <Router>
                 <div className='navbar' >
-                    <ul>
+                    <ul className='navbar'>
                         {/* <li><Link to='/profiledisplay'>Profile Display</Link></li> */}
                         <Button><Link to='/gamesindex' className='navbarButton'>Your Saved Games</Link></Button>
                         <Button><Link to='/commentsindex' className='navbarButton'>Favorite Games</Link></Button>
@@ -61,7 +63,13 @@ export default class Navigation extends React.Component<NavigationProps, Navigat
                 <div>
                     <Switch>
                         {/* <Route exact path='/profiledisplay'><Profile token={this.props.token} userId={this.props.userId} admin={this.props.admin} fetchGames={this.props.fetchGames} /></Route> */}
-                        <Route exact path='/gamesindex'><GamesIndex token={this.props.token} userId={this.props.userId} admin={this.props.admin} /></Route>
+                        <Route exact path='/auth'>
+                            {localStorage.token ? <Redirect to='/gamesindex' /> : null}
+                            <GamesIndex token={this.props.token} userId={this.props.userId} admin={this.props.admin} />
+                        </Route>
+                        <Route exact path='/gamesindex'>
+                            <GamesIndex token={this.props.token} userId={this.props.userId} admin={this.props.admin} />
+                        </Route>
                         <Route exact path='/commentsindex'><CommentsIndex token={this.props.token} userId={this.props.userId} admin={this.props.admin} /></Route>
                     </Switch>
                 </div>

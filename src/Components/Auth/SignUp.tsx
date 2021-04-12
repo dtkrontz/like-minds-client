@@ -12,6 +12,7 @@ type SignupProps = {
     updateToken: any,
     closeHandler: any,
     signupOpen: any,
+    setUser: any
 }
 
 type SignupState = {
@@ -58,7 +59,9 @@ export default class Signup extends React.Component<SignupProps, SignupState> {
             })
         })
         .then((response) => response.json())
-        .then((data) => {this.props.updateToken(data.sessionToken); alert('Username already in use')
+        .then((data) => {this.props.updateToken(data.sessionToken);
+        this.props.setUser(data);
+        console.log(data);
         })
     }
 

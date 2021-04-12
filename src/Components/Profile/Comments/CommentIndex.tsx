@@ -1,4 +1,5 @@
 import React from 'react';
+import './Comment.css'
 import APIURL from '../../../helpers/environment';
 import CommentCreate from './CommentCreate';
 import CommentTable from './CommentsTable';
@@ -133,7 +134,9 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
         return(
             <div>
                 {/* <p>Comment Index - Test</p> */}
+                <div className='commentTable'>
                 <CommentTable token={this.props.token} fetchFavoriteGames={this.fetchFavoriteGames} favoriteGames={this.state.favoriteGames} handleEdit={this.handleEdit} handleAdd={this.handleAdd} editComment={this.editComment} userId={this.props.userId} admin={this.props.admin} handleClickOpenCreate={this.handleClickOpenCreate} handleClickOpenEdit={this.handleClickOpenEdit} />
+                </div>
                 {this.state.openEdit ? <CommentEdit token={this.props.token}  handleEditCancel={this.handleEditCancel} commentToUpdate={this.state.commentToUpdate} fetchFavoriteGames={this.fetchFavoriteGames} handleClickOpenEdit={this.handleClickOpenEdit} handleClickCloseEdit={this.handleClickCloseEdit} openEdit={this.state.openEdit} /> : null}
                 {this.state.openCreate ? <CommentCreate token={this.props.token} gameId={this.state.gameId} fetchFavoriteGames={this.fetchFavoriteGames} handleClickOpenCreate={this.handleClickOpenCreate} handleClickCloseCreate={this.handleClickCloseCreate} openCreate={this.state.openCreate} /> : null}
             </div>

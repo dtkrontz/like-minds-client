@@ -1,6 +1,7 @@
 //Map the Get request from the profile.tsx
 
 import React, { ChangeEvent } from 'react';
+import './Game.css';
 import APIURL from '../../../helpers/environment';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -125,7 +126,7 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
 
     render() {
         return(
-            <div style={{display: 'flex', justifyContent: 'center'}}>
+            <div className='searchBar'>
                 <Grid container justify='center'>
                     <Grid item xs={12}>
                         <h4>YOUR SAVED GAMES:</h4>

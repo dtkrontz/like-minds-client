@@ -1,6 +1,9 @@
 import React from 'react';
+import './Profile.css';
 import GameOfTheWeek from '../GameOfTheWeek/GameofTheWeek';
 import GameCreate from './MyGames/GameCreate';
+import Button from '@material-ui/core/Button';
+
 
 type ProfileProps = {
     token: string,
@@ -78,9 +81,13 @@ export default class ProfileDisplay extends React.Component<ProfileProps, Profil
         return(
             <div>
                 <GameOfTheWeek />
-                <label>Search Games: <input type='text' placeholder='Game Title' value={this.state.searchTerm} onChange={this.updateSearchTerm} /></label>
-                <button onClick={this.searchGamesFetch}>Search</button>
+                <div className='searchBar'>
+                <label>Search for Games to Add: <input type='text' placeholder='Game Title' value={this.state.searchTerm} onChange={this.updateSearchTerm} />
+                <Button className='searchButton' onClick={this.searchGamesFetch}>Search</Button></label>
+                </div>
+                <div>
                 <GameCreate token={this.props.token} gamesList={this.state.gamesList} resetSearchState={this.resetSearchState} open={this.state.create} handleClickClose={this.resetSearchState} fetchGames={this.props.fetchGames} />
+                </div>
             </div>
         )
     }

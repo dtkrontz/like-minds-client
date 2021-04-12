@@ -2,6 +2,7 @@ import React, {useState, useEffect, EffectCallback} from 'react';
 import './App.css';
 import Auth from './Components/Auth/Auth';
 import Profile from './Components/Profile/Profile';
+import Navigation from './Components/Navigation/Navigation';
 
 
 
@@ -49,8 +50,8 @@ function App() {
 
   // const thing: boolean = false;
 
-  const protectedViews = () => {
-    return (sessionToken === localStorage.getItem('token') && localStorage.getItem('token') != undefined ? <Profile token={sessionToken} userId={userId} admin={admin} clearToken={clearToken} /> : <Auth setUser={setUser} clearToken={clearToken} updateToken={updateToken}/>)
+  const protectedViews = () : any => {
+    return (sessionToken === localStorage.getItem('token') && localStorage.getItem('token') != undefined ? <Navigation token={sessionToken} userId={userId} admin={admin} clearToken={clearToken} /> : <Auth setUser={setUser} clearToken={clearToken} updateToken={updateToken}/>)
   };
 
   return (

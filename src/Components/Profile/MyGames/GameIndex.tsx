@@ -105,11 +105,15 @@ export default class GamesIndex extends React.Component<GameIndexProps, GameInde
 
     render() {
         return(
-            <div style={{marginTop: '5vh'}}>
+            <div>
                 {/* <p>Games Index - Test</p> */}
                 {/* <p>Games Table</p> */}
+                <div className='profileDisplay'>
                 <ProfileDisplay token={this.props.token} userId={this.props.userId} admin={this.props.admin} fetchGames={this.fetchGames} />
+                </div>
+                <div className='gameTable'>
                 <GameTable token={this.props.token} fetchGames={this.fetchGames} games={this.state.games} input={this.state.input} editGame={this.editGame} handleClickOpen={this.handleClickOpen} />
+                </div>
                 {/* <p>Games Edit</p> */}
                 {this.state.open ? <GameEdit fetchGames={this.fetchGames} token={this.props.token} gameToUpdate={this.state.gameToUpdate} handleClickOpen={this.handleClickOpen} handleClickClose={this.handleClickClose} open={this.state.open} /> : null}
                 {/* <button onClick={this.searchGamesFetch}>Search</button> */}
