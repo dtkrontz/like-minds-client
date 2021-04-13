@@ -24,12 +24,6 @@ function App() {
     }
   }, []);
 
-
-    // const thingOne =((newToken: any) => {
-    //       setSessionToken(newToken);
-    // })
-  
-
   const updateToken = (newToken: string) => {
     console.log(newToken);
     localStorage.setItem('token', newToken);
@@ -55,8 +49,6 @@ function App() {
   console.log(sessionToken);
   console.log(userId);
   console.log(admin);
-
-  // const thing: boolean = false;
 
   const protectedViews = () : any => {
     return (sessionToken === localStorage.getItem('token') && localStorage.getItem('token') != undefined ? <Navigation token={sessionToken} userId={userId} admin={admin} clearToken={clearToken} /> : <Auth setUser={setUser} clearToken={clearToken} updateToken={updateToken}/>)

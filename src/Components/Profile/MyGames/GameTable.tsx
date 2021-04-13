@@ -1,6 +1,6 @@
 //Map the Get request from the profile.tsx
 
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, SyntheticEvent } from 'react';
 import './Game.css';
 import APIURL from '../../../helpers/environment';
 import Card from '@material-ui/core/Card';
@@ -35,34 +35,7 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
             input: '',
         }
     };
-
-    makeStyles() {
-        return ({
-        root: {
-          maxWidth: 345,
-        },
-        media: {
-          height: 140,
-        },
-      })
-    };
-
-    // fetchGames = () => {
-    //     fetch('http://localhost:4000/games/', {
-    //         method: 'GET',
-    //         headers: new Headers({
-    //             'Content-Type': 'application/json',
-    //             'Authorization': this.props.token
-    //         })
-    //     }).then(res => res.json())
-    //     .then(json => {
-    //         this.setState({
-    //             games: json
-    //         })
-    //         console.log('games', json)
-    //     })
-    // }
-
+    
     deleteGame = async (id: string): Promise<void> => {
         console.log(id);
         await fetch(`${APIURL}/games/${id}`, {
@@ -86,27 +59,6 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
             {input: e.target.value}
         )
     }
-
-    // handleEdit = () => {
-    //     this.setState({
-    //         edit: true
-    //     })
-    // }
-
-    // handleEditCancel = () => {
-    //     this.setState({
-    //         edit: false
-    //     })
-    // }
-
-    // editfields = () => {
-    //     return (
-    //         <div>
-    //             <p>Test</p>
-    //             <button onClick={this.handleEditCancel}>Cancel</button>
-    //         </div>
-    //     )
-    // }
 
     mapSort = (): IGameResult[] => {
         console.log(this.props.games);
@@ -132,8 +84,6 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
                     <Grid item xs={12}>
                         <h4>YOUR SAVED GAMES:</h4>
                     </Grid>
-                {/* <label>Search Saved Games: <input type='text' placeholder='Game Title'  onChange={((e) => this.updateInput(e))} /></label> */}
-                {/* {this.props.games.filter((table: any) => table.includes(this.state.input)).map((result: any, index: any) => { */}
                 {this.mapSort().map((result: IGameResult, index: number) => {
                     console.log(result);
                     return (
@@ -156,62 +106,18 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
                                     </CardContent>
                                 </CardActionArea>
                                 <CardActions>
-                                    <Button size="small" color="primary" onClick={((e: any) => this.deleteGame(result.id))}>
+                                    <Button size="small" color="primary" onClick={((e: SyntheticEvent) => this.deleteGame(result.id))}>
                                         Delete Game
                                     </Button>
-                                    {/* <Button size="small" color="primary" onClick={() => {this.props.editGame(result); this.props.handleEdit()}}>
-                                        Edit Game
-                                    </Button> */}
                                     <Button size="small" color="primary" onClick={() => {this.props.editGame(result); this.props.handleClickOpen()}}>
                                         Edit Game
                                     </Button>
                                 </CardActions>
-                            {/* <img src={result.image_url} alt='server img' style={{height: '150px'}} />
-                            <h2>{result.title}</h2>
-                            <h4>{result.id}</h4>
-                            <p>Genre: {result.genre}</p>
-                            <p>System: {result.system}</p>
-                            <p>{result.description}</p>
-                            <p>Review: {result.review}</p>
-                            <p>Rating: {result.rating}</p>
-                            <p>Favorite: {result.favorite ? 'My Favorite Game' : 'Not My Favorite Game'}</p>
-                            <button onClick={((e: any) => this.deleteGame(result.id))}>Delete from List</button>
-                            <button onClick={() => {this.props.editGame(result); this.props.handleEdit()}}>Edit Game - open modal with fields - dialog box</button> */}
                             </Card>
-                            {/* {this.state.edit ? <GameEdit fetchGames={this.props.fetchGames} token={this.props.token} handleEditCancel={this.handleEditCancel} result={result} index={index} /> : <div>
-                            <button key={index} onClick={this.handleEdit}>Edit Game - open modal with fields - dialog box</button></div>} */}
                         </div>
                     </Grid>
                     )
                 })}
-                {/* <div>
-                <Card style={{maxWidth: '345px',}}>
-      <CardActionArea>
-        <CardMedia
-          style={{maxHeight: '140px'}}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions>
-    </Card>
-                </div> */}
                 </Grid>
             </div>
         )

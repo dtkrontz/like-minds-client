@@ -117,19 +117,6 @@ export default class Signup extends Component<SignupProps, SignupState> {
                     </Button>
                     </DialogActions>
                 </Dialog>
-                {/* <p>Signup - Test</p>
-                <h1>Signup</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <label> Username:
-                        <input onChange={this.updateUsername} type='username' value={this.state.username} />
-                    </label>
-                    <label> Password:
-                        <input onChange={this.updatePassword} type='password' value={this.state.password} />
-                    </label>
-                    <br />
-                    <button>Submit</button>
-                </form>
-                <button onClick={this.props.closeHandler} >Close</button> */}
             </div>
         )
     }

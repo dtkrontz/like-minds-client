@@ -10,10 +10,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import {IGameResult} from '../../Interfaces';
 
 type GameEditProps = {
-    // handleEditCancel: any
-    // result: any,
-    // index: any,
-    // handleEditCancel: any,
     token: string,
     fetchGames: () => void,
     gameToUpdate: IGameResult,
@@ -85,15 +81,6 @@ export default class GamesEdit extends React.Component<GameEditProps, GameEditSt
         return(
             <div>
             <div>
-                {/* <p>Edit Games</p>
-                <label>Review: <input type='text' name='review' value={this.state.review} onChange={this.updateAllInput} /></label>
-                <br />
-                <label>Favorite: <input type='checkbox' checked={this.state.favorite} name='favorite' onChange={(e) => this.handleFavorite(e.target.value)} /></label>
-                <br />
-                <label>Rating: <input type='text' name='rating' value={this.state.rating} onChange={this.updateAllInput} /></label>
-                <br />
-                <button onClick={(() => this.updateGame())}>Submit</button> */}
-                {/* <button onClick={this.props.handleEditCancel}>Cancel</button> */}
             </div>
             <div>
             <Dialog open={this.props.open} onClose={this.props.handleClickClose} aria-labelledby="form-dialog-title">

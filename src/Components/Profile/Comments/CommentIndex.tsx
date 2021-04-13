@@ -4,7 +4,7 @@ import APIURL from '../../../helpers/environment';
 import CommentCreate from './CommentCreate';
 import CommentTable from './CommentsTable';
 import CommentEdit from './CommentEdit';
-import {ICommentResult, IGameResult, IUsername} from '../../Interfaces';
+import { ICommentResult, IGameResult } from '../../Interfaces';
 
 interface CommentIndexProps {
     token: string,
@@ -14,7 +14,6 @@ interface CommentIndexProps {
 
 interface CommentIndexState {
     favoriteGames: IGameResult[],
-    // favoriteGamesComments: [],
     edit: boolean,
     commentToUpdate: ICommentResult,
     add: boolean,
@@ -28,7 +27,6 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
         super(props)
         this.state = {
             favoriteGames: [],
-            // favoriteGamesComments: [],
             edit: false,
             commentToUpdate: {
                 content: '',
@@ -47,7 +45,6 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
 
     componentDidMount() {
         this.fetchFavoriteGames();
-        // this.fetchComments();
     };
 
     fetchFavoriteGames = () => {
@@ -65,22 +62,6 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
             console.log('favoriteGames', this.state.favoriteGames)
         })
     }
-
-    // fetchComments = () => {
-    //     fetch(`http://localhost:4000/comments/24af7e9a-b200-4cfe-a920-e6115c433c6b`, {
-    //         method: 'GET',
-    //         headers: new Headers ({
-    //             'Content-Type': 'application/json',
-    //             'Authorization': this.props.token
-    //         })
-    //     }).then(res => res.json())
-    //     .then(json => {
-    //         this.setState({
-    //             favoriteGamesComments: json
-    //         })
-    //         console.log('favoriteGamesComments', this.state.favoriteGamesComments)
-    //     })
-    // }
 
     handleEdit = () => {
         this.setState({
@@ -112,7 +93,7 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
         this.setState ({
             commentToUpdate: content
         })
-        console.log(content);
+        // console.log(content);
     }
 
     handleClickOpenCreate = () => {
@@ -142,7 +123,6 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
     render() {
         return(
             <div>
-                {/* <p>Comment Index - Test</p> */}
                 <div className='commentTable'>
                 <CommentTable token={this.props.token} fetchFavoriteGames={this.fetchFavoriteGames} favoriteGames={this.state.favoriteGames} handleEdit={this.handleEdit} handleAdd={this.handleAdd} editComment={this.editComment} userId={this.props.userId} admin={this.props.admin} handleClickOpenCreate={this.handleClickOpenCreate} handleClickOpenEdit={this.handleClickOpenEdit} />
                 </div>

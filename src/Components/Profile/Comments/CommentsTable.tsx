@@ -1,7 +1,5 @@
 import React, { SyntheticEvent } from 'react';
 import APIURL from '../../../helpers/environment';
-import Modal from '@material-ui/core/Modal';
-import { resourceLimits } from 'node:worker_threads';
 import {  } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -20,7 +18,6 @@ interface CommentIndexProps {
     token: string,
     fetchFavoriteGames: () => void,
     favoriteGames: IGameResult[],
-    // fetchComments: any,
     handleEdit: () => void,
     handleAdd: (result: string) => void,
     editComment: (content: ICommentResult) => void,
@@ -40,21 +37,10 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
         }
     };
 
-    // makeStyles() {
-    //     return ({
-    //     root: {
-    //       maxWidth: 345,
-    //     },
-    //     media: {
-    //       height: 140,
-    //     },
-    //   })
-    // };
-
     deleteComment = async (id: string): Promise<void> => {
-        console.log('delete');
-        console.log(this.props.admin);
-        console.log(`${this.props.admin}`);
+        // console.log('delete');
+        // console.log(this.props.admin);
+        // console.log(`${this.props.admin}`);
         await fetch(`${APIURL}/comments/${id}`, {
             method: 'DELETE',
             headers: new Headers ({
@@ -70,7 +56,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
             this.props.favoriteGames.sort((a: IGameResult, b: IGameResult) => {
             let nameA: string = a.title.toUpperCase();
             let nameB: string = b.title.toUpperCase();
-            console.log(nameA, nameB);
+            // console.log(nameA, nameB);
             if (nameA < nameB) {
                 return -1;
             } else if (nameA > nameB) {
@@ -81,27 +67,10 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
         }))
     };
 
-    // mapCommentsSort = (result: IGameResult): any => {
-    //     console.log(result);
-    //     return (
-    //         this.props.favoriteGames.sort((a: any, b: any) => {
-    //         let nameA: string = a.title.toUpperCase();
-    //         let nameB: string = b.title.toUpperCase();
-    //         console.log(nameA, nameB);
-    //         if (nameA < nameB) {
-    //             return -1;
-    //         } else if (nameA > nameB) {
-    //             return 1;
-    //         } else {
-    //             return 0;
-    //         };
-    //     }))
-    // };
-
     commentMap = (result: IGameResult,) => {
         console.log(result);
-        console.log(this.props.userId);
-        console.log(this.props.admin);
+        // console.log(this.props.userId);
+        // console.log(this.props.admin);
         // console.log(result.id);
         // console.log(this.props.favoriteGamesComments[index].gameId);
         //game table ID vs comments table gameID
@@ -128,42 +97,14 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                             </div>
                             </Typography>
                             <CardActionArea>
-                                {/* {this.props.userId === result.comments[index].userId || this.props.admin ? <div> <Button size="small" color="primary" onClick={((e: any) => this.deleteComment(commentResult.id))}>Delete comment</Button>
-                                <Button size="small" color="primary"  onClick={() => {this.props.editComment(commentResult); this.props.handleEdit()}}>Edit comment - open modal with fields - dialog box</Button> </div> : null} */}
                             </CardActionArea>
-                            {/* Ternary to check token id with comment id || admin is true*/}
-                            
                         </div>
                     );
                 })
             } else {
                 return null
             }
-    // }
-}
-
-    // commentMap = () => {
-    //     console.log(this.props.favoriteGamesComments)
-    //     //game table ID vs comments table gameID
-    //     if (this.props.favoriteGamesComments.length > 0) {
-    //        return this.props.favoriteGamesComments.map((commentResult: any, index: number) => {
-    //                 console.log(commentResult.content);
-    //                 return (
-    //                     <div key={index}>
-    //                         <ul>
-    //                         <li>{commentResult.content}</li>
-    //                         </ul>
-    //                         <button>Delete comment</button>
-    //                         <button>Edit comment - open modal with fields - dialog box</button>
-    //                     </div>
-    //                 );
-    //             })
-    //     } else {
-    //         return (
-    //             null
-    //         )
-    //     }  
-    // }
+        }
 
     render() {
         return(
@@ -200,15 +141,6 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                                     </Button>
                                 </CardActions>
                             </Card>
-                            {/* <img src={result.image_url} alt='server img' style={{height: '150px'}} />
-                            <h2>{result.title}: <br/> {result.user.username}'s Favorite Game!</h2>
-                            <h4>{result.id}</h4>
-                            <p>Genre: {result.genre}</p>
-                            <p>System: {result.system}</p>
-                            <p>{result.description}</p>
-                            <p>Comments: {this.commentMap(result)}</p>
-                            <button onClick={(e) => this.props.handleAdd(result.id)}>Add comment - open modal with fields - dialog box</button>
-                            <hr /> */}
                         </div>
                     </Grid>
                     )

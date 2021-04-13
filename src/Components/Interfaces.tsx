@@ -36,13 +36,13 @@ interface IUser {
     admin: string,
 }
 
-export interface IGameSort {
-    title: any,
-}
+// export interface IGameSort {
+//     title: IGameSortTitle,
+// }
 
-interface IGameSortTitle {
-    title: string
-}
+// interface IGameSortTitle {
+//     title: string
+// }
 
 export interface IGameResult {
     image_url: string,

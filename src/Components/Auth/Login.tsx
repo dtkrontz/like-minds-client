@@ -105,19 +105,6 @@ export default class Login extends Component<LoginProps, LoginState> {
                     </Button>
                     </DialogActions>
                 </Dialog>
-                {/* <p>Login - Test</p>
-                <h1>Login</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <label> Username:
-                        <input onChange={this.updateUsername} type='username' />
-                    </label>
-                    <label> Password:
-                        <input onChange={this.updatePassword} type='password' />
-                    </label>
-                    <br />
-                    <button>Submit</button>
-                </form>
-                <button onClick={this.props.closeHandler} >Close</button> */}
             </div>
         )
     }

@@ -30,7 +30,7 @@ export default class CommentCreate extends React.Component<CommentCreateProps, C
         super(props)
         this.state = {
             content: '',
-            gameId: this.props.gameId, // pull this id from somewhere
+            gameId: this.props.gameId,
             open: false,
         }
     };
@@ -60,14 +60,6 @@ export default class CommentCreate extends React.Component<CommentCreateProps, C
     render() {
         return(
             <div>
-                {/* <p>Comment Create - Test</p>
-                <label>Comment: <input type='text' onChange={this.updateContent} /></label>
-                <button onClick={this.addComment}>Add Comment</button>
-                <button>Cancel</button>
-                <div>
-                <Button variant="outlined" color="primary" onClick={this.props.handleClickOpen}>
-        Open form dialog
-      </Button> */}
                 <Dialog open={this.props.openCreate} onClose={this.props.handleClickCloseCreate} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Create Comment</DialogTitle>
                     <DialogContent>

@@ -10,43 +10,25 @@ import {
     BrowserRouter as Router,
   } from 'react-router-dom';
 import GamesIndex from '../Profile/MyGames/GameIndex';
-import Profile from '../Profile/ProfileDisplay';
 import CommentsIndex from '../Profile/Comments/CommentIndex';
 import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 
 type NavigationProps = {
     token: string,
     userId: string,
     admin: boolean,
     clearToken: () => void,
-    // fetchGames: any,
 }
 
 type NavigationState = {
-    // stateanchorEl: boolean,
 }
 
 export default class Navigation extends React.Component<NavigationProps, NavigationState> {
     constructor (props: NavigationProps) {
         super(props)
         this.state = {
-            // stateanchorEl: false
         }
     };
-
-    // handleClick = () => {
-    //     this.setState({
-    //         stateanchorEl: true
-    //     })
-    // }
-
-    // handleClose =() => {
-    //     this.setState({
-    //         stateanchorEl: false
-    //     })
-    // }
 
     render() {
         return(

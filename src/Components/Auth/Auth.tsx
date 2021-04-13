@@ -60,10 +60,7 @@ export default class Auth extends React.Component<AuthProps, AuthState> {
                 </div>
                 {this.state.signupOpen ? <Signup updateToken={this.props.updateToken} closeHandler={this.closeHandler} signupOpen={this.state.signupOpen} setUser={this.props.setUser} /> : null}
                 {this.state.loginOpen ? <Login updateToken={this.props.updateToken} closeHandler={this.closeHandler} setUser={this.props.setUser} loginOpen={this.state.loginOpen} /> : null}
-                {/* <Login updateToken={this.props.updateToken}/> */}
-                {/* <Signup updateToken={this.props.updateToken} /> */}
                 <GameOfTheWeek />
-                {/* <button onClick={this.props.clearToken}>Clear Token</button> */}
             </div>
         )
     }

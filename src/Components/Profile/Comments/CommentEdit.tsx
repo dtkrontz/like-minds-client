@@ -7,12 +7,12 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import {ICommentResult} from '../../Interfaces';
 
 interface CommentEditProps {
     token: string,
-    // fetchComments: any,
     handleEditCancel: () => void,
-    commentToUpdate: any,
+    commentToUpdate: ICommentResult,
     fetchFavoriteGames: () => void,
     handleClickOpenEdit: () => void,
     handleClickCloseEdit: () => void,
@@ -36,9 +36,9 @@ export default class CommentEdit extends React.Component<CommentEditProps, Comme
         console.log(this.props.commentToUpdate);
     };
 
-    componentWillUnmount() {
-        console.log('I unmounted')
-    }
+    // componentWillUnmount() {
+    //     console.log('I unmounted')
+    // }
 
     updateInput = (e: ChangeEvent<HTMLInputElement>) => {
         console.log(typeof(e));
@@ -48,7 +48,7 @@ export default class CommentEdit extends React.Component<CommentEditProps, Comme
     };
 
     updateComment = () => {
-        console.log('update');
+        // console.log('update');
         fetch(`${APIURL}/comments/${this.props.commentToUpdate.id}`, {
             method: 'PUT',
             body: JSON.stringify({
@@ -94,10 +94,6 @@ export default class CommentEdit extends React.Component<CommentEditProps, Comme
                     </Button>
                     </DialogActions>
                 </Dialog>
-                {/* <p>Comment Edit - Test</p>
-                <label>Comment: <input type='text' value={this.state.content} onChange={this.updateInput} /></label>
-                <button onClick={(() => this.updateComment())}>Submit</button>
-                <button onClick={(() => this.props.handleEditCancel())}>Cancel</button> */}
             </div>
         )
     }
