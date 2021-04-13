@@ -120,7 +120,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                                 </Grid>
                                 <Grid item xs={12} sm={4}>
                                 <Box>{localStorage.id === result.comments[index].userId || localStorage.admin === 'true' ? <div> <Button size="small" color="primary"  onClick={() => {this.props.editComment(commentResult); this.props.handleClickOpenEdit()}}><EditIcon/></Button>
-                                <Button size="small" color="primary" onClick={((e: SyntheticEvent) => this.deleteComment(commentResult.id))}><HighlightOffSharpIcon /></Button>
+                                <Button size="small" color="secondary" onClick={((e: SyntheticEvent) => this.deleteComment(commentResult.id))}><HighlightOffSharpIcon /></Button>
                                  </div> : null}
                                  </Box>
                                  </Grid>

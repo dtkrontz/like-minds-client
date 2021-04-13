@@ -123,7 +123,7 @@ export default class GamesEdit extends React.Component<GameEditProps, GameEditSt
                         type="text"
                         fullWidth
                         onChange={this.updateAllInput}
-                        InputProps={{inputProps: {maxlength: 10}}}
+                        InputProps={{inputProps: {maxlength: 100}}}
                         value={this.state.review}
                     />
                     <label>Favorite: <input type='checkbox' checked={this.state.favorite} name='favorite' onChange={(e) => this.handleFavorite(e.target.value)} /></label>

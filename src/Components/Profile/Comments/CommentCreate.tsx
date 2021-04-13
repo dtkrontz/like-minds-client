@@ -82,7 +82,7 @@ export default class CommentCreate extends React.Component<CommentCreateProps, C
                         type="text"
                         fullWidth
                         onChange={this.updateContent}
-                        InputProps={{inputProps: {maxlength: 20}}}
+                        InputProps={{inputProps: {maxlength: 100}}}
                     />
                     </DialogContent>
                     <DialogActions>

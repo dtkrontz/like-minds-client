@@ -149,7 +149,7 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
                                         <Typography gutterBottom variant="h5" component="h2">
                                             {result.title}
                                         </Typography>
-                                        <Typography >
+                                        <Typography>
                                             Genre: {result.genre} <br />
                                             System: {result.system} <br />
                                             Rating: {result.rating} <br />

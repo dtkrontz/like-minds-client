@@ -82,7 +82,7 @@ export default class CommentEdit extends React.Component<CommentEditProps, Comme
                         fullWidth
                         onChange={this.updateInput}
                         value={this.state.content}
-                        InputProps={{inputProps: {maxlength: 20}}}
+                        InputProps={{inputProps: {maxlength: 100}}}
                     />
                     </DialogContent>
                     <DialogActions>

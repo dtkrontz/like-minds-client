@@ -27,6 +27,7 @@ interface IRawGPlatformName {
 
 export interface IData {
     user: IUser,
+    message: string,
 }
 
 interface IUser {
