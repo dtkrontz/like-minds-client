@@ -59,7 +59,7 @@ export default class GamesCreate extends React.Component<GameCreateProps, GameCr
                     return(genre.name)
                 })}`,
                 system: `${game.platforms.map((platforms: IRawGPlatforms) => {
-                    return(platforms.platform[index].name)
+                    return(platforms.platform.name)
                 })}`,
                 description: '',
                 image_url: game.background_image,

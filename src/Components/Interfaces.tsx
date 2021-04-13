@@ -18,7 +18,7 @@ export interface IRawGGenres {
 }
 
 export interface IRawGPlatforms {
-    platform: IRawGPlatformName[],
+    platform: IRawGPlatformName,
     name: string,
 }
 
