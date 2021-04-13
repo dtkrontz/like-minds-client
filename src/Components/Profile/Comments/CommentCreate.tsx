@@ -1,5 +1,5 @@
 import { Interface } from 'node:readline';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import APIURL from '../../../helpers/environment';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -13,9 +13,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 interface CommentCreateProps {
     token: string,
     gameId: string,
-    fetchFavoriteGames: any,
-    handleClickOpenCreate: any,
-    handleClickCloseCreate: any,
+    fetchFavoriteGames: () => void,
+    handleClickOpenCreate: () => void,
+    handleClickCloseCreate: () => void,
     openCreate: boolean,
 }
 
@@ -26,7 +26,7 @@ interface CommentCreateState {
 }
 
 export default class CommentCreate extends React.Component<CommentCreateProps, CommentCreateState> {
-    constructor (props: any) {
+    constructor (props: CommentCreateProps) {
         super(props)
         this.state = {
             content: '',
@@ -35,7 +35,7 @@ export default class CommentCreate extends React.Component<CommentCreateProps, C
         }
     };
 
-    updateContent = (e: any) => {
+    updateContent = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({
             content: e.target.value
         })
@@ -82,6 +82,7 @@ export default class CommentCreate extends React.Component<CommentCreateProps, C
                         type="text"
                         fullWidth
                         onChange={this.updateContent}
+                        InputProps={{inputProps: {maxlength: 20}}}
                     />
                     </DialogContent>
                     <DialogActions>

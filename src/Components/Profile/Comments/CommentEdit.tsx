@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import APIURL from '../../../helpers/environment';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -11,11 +11,11 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 interface CommentEditProps {
     token: string,
     // fetchComments: any,
-    handleEditCancel: any,
+    handleEditCancel: () => void,
     commentToUpdate: any,
-    fetchFavoriteGames: any,
-    handleClickOpenEdit: any,
-    handleClickCloseEdit: any,
+    fetchFavoriteGames: () => void,
+    handleClickOpenEdit: () => void,
+    handleClickCloseEdit: () => void,
     openEdit: boolean,
 };
 
@@ -24,7 +24,7 @@ interface CommentEditState {
 }
 
 export default class CommentEdit extends React.Component<CommentEditProps, CommentEditState> {
-    constructor (props: any) {
+    constructor (props: CommentEditProps) {
         super(props)
         this.state = {
             content: this.props.commentToUpdate.content,
@@ -40,7 +40,7 @@ export default class CommentEdit extends React.Component<CommentEditProps, Comme
         console.log('I unmounted')
     }
 
-    updateInput = (e: any) => {
+    updateInput = (e: ChangeEvent<HTMLInputElement>) => {
         console.log(typeof(e));
         this.setState({
             content: e.target.value
@@ -82,6 +82,7 @@ export default class CommentEdit extends React.Component<CommentEditProps, Comme
                         fullWidth
                         onChange={this.updateInput}
                         value={this.state.content}
+                        InputProps={{inputProps: {maxlength: 20}}}
                     />
                     </DialogContent>
                     <DialogActions>

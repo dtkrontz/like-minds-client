@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import APIURL from '../../../helpers/environment';
 import Modal from '@material-ui/core/Modal';
 import { resourceLimits } from 'node:worker_threads';
@@ -12,20 +12,22 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-
+import {ICommentResult, IGameResult} from '../../Interfaces';
+import HighlightOffSharpIcon from '@material-ui/icons/HighlightOffSharp';
+import EditIcon from '@material-ui/icons/Edit';
 
 interface CommentIndexProps {
     token: string,
-    fetchFavoriteGames: any,
+    fetchFavoriteGames: () => void,
     favoriteGames: [],
     // fetchComments: any,
-    handleEdit: any,
-    handleAdd: any,
-    editComment: any,
+    handleEdit: () => void,
+    handleAdd: (result: string) => void,
+    editComment: (content: ICommentResult[]) => void,
     userId: string,
     admin: boolean,
-    handleClickOpenCreate: any,
-    handleClickOpenEdit: any,
+    handleClickOpenCreate: () => void,
+    handleClickOpenEdit: () => void,
 }
 
 interface CommentIndexState {
@@ -33,7 +35,7 @@ interface CommentIndexState {
 }
 
 export default class CommentTable extends React.Component<CommentIndexProps, CommentIndexState> {
-    constructor (props: any) {
+    constructor (props: CommentIndexProps) {
         super(props)
         this.state = {
         }
@@ -64,7 +66,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
         }).then(() => this.props.fetchFavoriteGames())
     }
 
-    mapGamesSort = (): [] => {
+    mapGamesSort = (): IGameResult[] => {
         return (
             this.props.favoriteGames.sort((a: any, b: any) => {
             let nameA: string = a.title.toUpperCase();
@@ -80,7 +82,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
         }))
     };
 
-    mapCommentsSort = (): [] => {
+    mapCommentsSort = (): any => {
         return (
             this.props.favoriteGames.sort((a: any, b: any) => {
             let nameA: string = a.title.toUpperCase();
@@ -105,15 +107,16 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
         //game table ID vs comments table gameID
         // if (result.id === this.props.favoriteGamesComments[index].gameId && this.props.favoriteGamesComments[0] !== undefined) {
             if (result.comments.length > 0) {
-            return result.comments.map((commentResult: any, index: any) => {
+            return result.comments.map((commentResult: any, index: number) => {
                     console.log(index, commentResult);
                     return (
                         <div key={index}>
                             <Typography>
                             <div style={{display: 'flex', justifyContent: 'center'}}>
                                 <Box display='flex' flexWrap='wrap'><Typography style={{overflowWrap: 'normal'}}>{commentResult.content} - {commentResult.user.username}</Typography></Box>
-                                {localStorage.id === result.comments[index].userId || localStorage.admin === 'true' ? <div> <Button size="small" color="primary" onClick={((e: any) => this.deleteComment(commentResult.id))}>D</Button>
-                                <Button size="small" color="primary"  onClick={() => {this.props.editComment(commentResult); this.props.handleClickOpenEdit()}}>E</Button> </div> : null}
+                                {localStorage.id === result.comments[index].userId || localStorage.admin === 'true' ? <div> <Button size="small" color="primary"  onClick={() => {this.props.editComment(commentResult); this.props.handleClickOpenEdit()}}><EditIcon/></Button>
+                                <Button size="small" color="primary" onClick={((e: SyntheticEvent) => this.deleteComment(commentResult.id))}><HighlightOffSharpIcon /></Button>
+                                 </div> : null}
                             </div>
                             </Typography>
                             <CardActionArea>
@@ -161,7 +164,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                     <Grid item xs={12}>
                         <h4>FAVORITE GAMES:</h4>
                     </Grid>
-                {this.mapGamesSort().map((result: any, index: any) => {
+                {this.mapGamesSort().map((result: any, index: number) => {
                     return (
                         <Grid container xs={12} sm={5} justify='center' spacing={0} max-width='400px'>
                         <div key={index} style={{padding: '15px'}}>

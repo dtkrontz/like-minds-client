@@ -7,7 +7,22 @@ export interface ICommentResult {
 }
 
 export interface IRawGResult {
-    
+    background_image: string,
+    name: string,
+    genres: any,
+    platforms: any,
+}
+
+interface IRawGGenres {
+    name: string,
+}
+
+interface IRawGPlatforms {
+    platform: any,
+}
+
+interface IRawGPlatformName {
+    name: string,
 }
 
 export interface IData {
@@ -36,4 +51,9 @@ export interface IGameResult {
     review: string,
     favorite: boolean,
     id: number,
+}
+
+export interface ICommentResult {
+    content: string,
+    userId: string,
 }

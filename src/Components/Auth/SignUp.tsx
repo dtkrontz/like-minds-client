@@ -44,6 +44,10 @@ export default class Signup extends Component<SignupProps, SignupState> {
 
     handleSubmit = (event: SyntheticEvent) => {
         event.preventDefault();
+        const regEx = new RegExp (/[a-z]{1,10}[0-9]{1,10}/i);
+        if(this.state.password.length <= 5 || this.state.username.length <= 5){
+            alert('Username and Password require 6 or more characters.')
+       } else if (regEx.test(this.state.username)){
         // console.log(username, password);
         fetch(`${APIURL}/auth/register`, {
             method: 'POST',
@@ -64,6 +68,7 @@ export default class Signup extends Component<SignupProps, SignupState> {
         this.props.setUser(data);
         console.log(data);
         })
+    }
     }
 
 

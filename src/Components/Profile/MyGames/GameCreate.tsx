@@ -11,15 +11,16 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
+import {IGameResult, IRawGResult} from '../../Interfaces';
 
 
 type GameCreateProps = {
-    gamesList: any,
+    gamesList: IGameResult[],
     token: string,
-    resetSearchState: any,
+    resetSearchState: () => void,
     open: boolean,
-    handleClickClose: any,
-    fetchGames: any,
+    handleClickClose: () => void,
+    fetchGames: () => void,
 }
 
 type GameCreateState = {
@@ -34,7 +35,7 @@ type GameCreateState = {
 }
 
 export default class GamesCreate extends React.Component<GameCreateProps, GameCreateState> {
-    constructor (props: any) {
+    constructor (props: GameCreateProps) {
         super(props)
         this.state = {
             title: '',
@@ -84,7 +85,7 @@ export default class GamesCreate extends React.Component<GameCreateProps, GameCr
         }).then(() => {
             this.props.resetSearchState(); 
             this.props.fetchGames();
-            alert('Game Added To Your List!');
+            // alert('Game Added To Your List!');
             
         })
     }
@@ -94,7 +95,7 @@ export default class GamesCreate extends React.Component<GameCreateProps, GameCr
             <div>
                 <Dialog open={this.props.open} onClose={this.props.handleClickClose} aria-labelledby="form-dialog-title">          
                 {/* <p>Games Create - Test</p> */}
-                {this.props.gamesList.slice(0,1).map((game: any, index: any) => {
+                {this.props.gamesList.slice(0,1).map((game: any, index: number) => {
                     return (
                         <div key={index}>
                             <Card style={{maxWidth: '350px'}}>
