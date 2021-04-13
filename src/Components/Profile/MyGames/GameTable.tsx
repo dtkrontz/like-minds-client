@@ -14,7 +14,6 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { IGameResult } from '../../Interfaces';
 
-
 type GameTableProps = {
     token: string,
     input: string,
@@ -23,11 +22,9 @@ type GameTableProps = {
     // handleEdit: any,
     editGame: (game: IGameResult) => void,
     handleClickOpen: () => void,
-
 }
 
 type GameTableState = {
-    // games: [],
     input: string,
 }
 
@@ -35,7 +32,6 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
     constructor (props: GameTableProps) {
         super(props)
         this.state = {
-            // games: [],
             input: '',
         }
     };
@@ -67,7 +63,7 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
     //     })
     // }
 
-    deleteGame = async (id: number) => {
+    deleteGame = async (id: string): Promise<void> => {
         console.log(id);
         await fetch(`${APIURL}/games/${id}`, {
             method: 'DELETE',
@@ -113,8 +109,9 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
     // }
 
     mapSort = (): IGameResult[] => {
+        console.log(this.props.games);
         return (
-            this.props.games.sort((a: any, b: any) => {
+            this.props.games.sort((a: IGameResult, b: IGameResult) => {
             let nameA: string = a.title.toUpperCase();
             let nameB: string = b.title.toUpperCase();
             console.log(nameA, nameB);
@@ -180,7 +177,6 @@ export default class GamesTable extends React.Component<GameTableProps, GameTabl
                             <p>Favorite: {result.favorite ? 'My Favorite Game' : 'Not My Favorite Game'}</p>
                             <button onClick={((e: any) => this.deleteGame(result.id))}>Delete from List</button>
                             <button onClick={() => {this.props.editGame(result); this.props.handleEdit()}}>Edit Game - open modal with fields - dialog box</button> */}
-                            
                             </Card>
                             {/* {this.state.edit ? <GameEdit fetchGames={this.props.fetchGames} token={this.props.token} handleEditCancel={this.handleEditCancel} result={result} index={index} /> : <div>
                             <button key={index} onClick={this.handleEdit}>Edit Game - open modal with fields - dialog box</button></div>} */}

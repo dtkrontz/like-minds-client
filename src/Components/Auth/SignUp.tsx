@@ -79,7 +79,7 @@ export default class Signup extends Component<SignupProps, SignupState> {
                     <DialogTitle id="form-dialog-title">Signup</DialogTitle>
                     <DialogContent>
                     <DialogContentText>
-                        To signup, please enter a username, and password.
+                        To signup, please enter a username, and password, each with 6 or more characters.
                     </DialogContentText>
                     <TextField
                         autoFocus

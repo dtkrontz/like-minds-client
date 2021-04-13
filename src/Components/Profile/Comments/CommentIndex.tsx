@@ -4,7 +4,7 @@ import APIURL from '../../../helpers/environment';
 import CommentCreate from './CommentCreate';
 import CommentTable from './CommentsTable';
 import CommentEdit from './CommentEdit';
-import {ICommentResult} from '../../Interfaces';
+import {ICommentResult, IGameResult, IUsername} from '../../Interfaces';
 
 interface CommentIndexProps {
     token: string,
@@ -13,10 +13,10 @@ interface CommentIndexProps {
 }
 
 interface CommentIndexState {
-    favoriteGames: any,
+    favoriteGames: IGameResult[],
     // favoriteGamesComments: [],
     edit: boolean,
-    commentToUpdate: ICommentResult[],
+    commentToUpdate: ICommentResult,
     add: boolean,
     gameId: string,
     openCreate: boolean,
@@ -30,10 +30,14 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
             favoriteGames: [],
             // favoriteGamesComments: [],
             edit: false,
-            commentToUpdate: [{
+            commentToUpdate: {
                 content: '',
                 userId: '',
-            }],
+                user: {
+                    username: '',
+                },
+                id: ''
+            },
             add: false,
             gameId: '',
             openCreate: false,
@@ -104,7 +108,7 @@ export default class GamesIndex extends React.Component<CommentIndexProps, Comme
         })
     }
 
-    editComment = (content: ICommentResult[]) => {
+    editComment = (content: ICommentResult) => {
         this.setState ({
             commentToUpdate: content
         })

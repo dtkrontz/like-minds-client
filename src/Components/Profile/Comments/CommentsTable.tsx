@@ -19,11 +19,11 @@ import EditIcon from '@material-ui/icons/Edit';
 interface CommentIndexProps {
     token: string,
     fetchFavoriteGames: () => void,
-    favoriteGames: [],
+    favoriteGames: IGameResult[],
     // fetchComments: any,
     handleEdit: () => void,
     handleAdd: (result: string) => void,
-    editComment: (content: ICommentResult[]) => void,
+    editComment: (content: ICommentResult) => void,
     userId: string,
     admin: boolean,
     handleClickOpenCreate: () => void,
@@ -31,7 +31,6 @@ interface CommentIndexProps {
 }
 
 interface CommentIndexState {
-    // favoriteGames: [],
 }
 
 export default class CommentTable extends React.Component<CommentIndexProps, CommentIndexState> {
@@ -41,18 +40,18 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
         }
     };
 
-    makeStyles() {
-        return ({
-        root: {
-          maxWidth: 345,
-        },
-        media: {
-          height: 140,
-        },
-      })
-    };
+    // makeStyles() {
+    //     return ({
+    //     root: {
+    //       maxWidth: 345,
+    //     },
+    //     media: {
+    //       height: 140,
+    //     },
+    //   })
+    // };
 
-    deleteComment = async (id: number) => {
+    deleteComment = async (id: string): Promise<void> => {
         console.log('delete');
         console.log(this.props.admin);
         console.log(`${this.props.admin}`);
@@ -68,7 +67,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
 
     mapGamesSort = (): IGameResult[] => {
         return (
-            this.props.favoriteGames.sort((a: any, b: any) => {
+            this.props.favoriteGames.sort((a: IGameResult, b: IGameResult) => {
             let nameA: string = a.title.toUpperCase();
             let nameB: string = b.title.toUpperCase();
             console.log(nameA, nameB);
@@ -98,7 +97,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
         }))
     };
 
-    commentMap = (result: any,) => {
+    commentMap = (result: IGameResult,) => {
         console.log(result);
         console.log(this.props.userId);
         console.log(this.props.admin);
@@ -107,7 +106,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
         //game table ID vs comments table gameID
         // if (result.id === this.props.favoriteGamesComments[index].gameId && this.props.favoriteGamesComments[0] !== undefined) {
             if (result.comments.length > 0) {
-            return result.comments.map((commentResult: any, index: number) => {
+            return result.comments.map((commentResult: ICommentResult, index: number) => {
                     console.log(index, commentResult);
                     return (
                         <div key={index}>
@@ -172,7 +171,7 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                     <Grid item xs={12}>
                         <h4>FAVORITE GAMES:</h4>
                     </Grid>
-                {this.mapGamesSort().map((result: any, index: number) => {
+                {this.mapGamesSort().map((result: IGameResult, index: number) => {
                     return (
                         <Grid container xs={12} sm={5} justify='center' spacing={0} max-width='400px'>
                         <div key={index} style={{padding: '15px'}}>

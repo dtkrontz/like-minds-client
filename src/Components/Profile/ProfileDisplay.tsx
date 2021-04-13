@@ -3,7 +3,7 @@ import './Profile.css';
 import GameOfTheWeek from '../GameOfTheWeek/GameofTheWeek';
 import GameCreate from './MyGames/GameCreate';
 import Button from '@material-ui/core/Button';
-import {IGameResult} from '../Interfaces';
+import {IGameResult, IRawGResult} from '../Interfaces';
 
 type ProfileProps = {
     token: string,
@@ -13,7 +13,7 @@ type ProfileProps = {
 }
 
 type ProfileState = {
-    gamesList: IGameResult[],
+    gamesList: IRawGResult[],
     apiKey: string,
     searchTerm: string,
     create: boolean,
@@ -24,16 +24,6 @@ export default class ProfileDisplay extends React.Component<ProfileProps, Profil
         super(props)
         this.state = {
             gamesList: [],
-            // {
-            //     image_url: '',
-            //     title: '',
-            //     genre: '',
-            //     system: '',
-            //     rating: 0,
-            //     review: '',
-            //     favorite: false,
-            //     id: 0,
-            // },
             apiKey: '9df708d3da4e4c31968e89c6491797c2',
             searchTerm: '',
             create: false,

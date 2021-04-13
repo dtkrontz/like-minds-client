@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import APIURL from '../../../helpers/environment';
 import Modal from '@material-ui/core/Modal';
 import { resourceLimits } from 'node:worker_threads';
@@ -15,7 +15,7 @@ import {IGameResult, IRawGResult} from '../../Interfaces';
 
 
 type GameCreateProps = {
-    gamesList: IGameResult[],
+    gamesList: IRawGResult[],
     token: string,
     resetSearchState: () => void,
     open: boolean,
@@ -49,10 +49,10 @@ export default class GamesCreate extends React.Component<GameCreateProps, GameCr
         }
     };
 
-    addGame = async (e: any) => {
+    addGame = async (e: SyntheticEvent) => {
         e.preventDefault();
 
-        await this.props.gamesList.slice(0,1).map((game: any, index: any) => {
+        await this.props.gamesList.slice(0,1).map((game: IRawGResult, index: number) => {
             this.setState({
                 title: game.name,
                 genre: `${game.genres.map((genre: any) =>{
@@ -95,7 +95,7 @@ export default class GamesCreate extends React.Component<GameCreateProps, GameCr
             <div>
                 <Dialog open={this.props.open} onClose={this.props.handleClickClose} aria-labelledby="form-dialog-title">          
                 {/* <p>Games Create - Test</p> */}
-                {this.props.gamesList.slice(0,1).map((game: any, index: number) => {
+                {this.props.gamesList.slice(0,1).map((game: IRawGResult, index: number) => {
                     return (
                         <div key={index}>
                             <Card style={{maxWidth: '350px'}}>

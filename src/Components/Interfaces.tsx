@@ -51,10 +51,17 @@ export interface IGameResult {
     rating: number,
     review: string,
     favorite: boolean,
-    id: number,
+    id: string,
+    comments: ICommentResult[],
 }
 
 export interface ICommentResult {
     content: string,
     userId: string,
+    user: IUsername,
+    id: string,
+}
+
+export interface IUsername {
+    username: string,
 }

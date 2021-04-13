@@ -35,7 +35,8 @@ export default class GamesIndex extends React.Component<GameIndexProps, GameInde
                 rating: 0,
                 review: '',
                 favorite: false,
-                id: 0,
+                id: '',
+                comments: [],
             },
             open: false,
         }
