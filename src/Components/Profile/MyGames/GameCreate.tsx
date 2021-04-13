@@ -11,7 +11,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
-import {IGameResult, IRawGResult} from '../../Interfaces';
+import {IGameResult, IRawGResult, IRawGGenres, IRawGPlatforms} from '../../Interfaces';
 
 
 type GameCreateProps = {
@@ -49,17 +49,17 @@ export default class GamesCreate extends React.Component<GameCreateProps, GameCr
         }
     };
 
-    addGame = async (e: SyntheticEvent) => {
+    addGame = async (e: SyntheticEvent) : Promise<void> => {
         e.preventDefault();
 
         await this.props.gamesList.slice(0,1).map((game: IRawGResult, index: number) => {
             this.setState({
                 title: game.name,
-                genre: `${game.genres.map((genre: any) =>{
+                genre: `${game.genres.map((genre: IRawGGenres) => {
                     return(genre.name)
                 })}`,
-                system: `${game.platforms.map((platforms: any) => {
-                    return(platforms.platform.name)
+                system: `${game.platforms.map((platforms: IRawGPlatforms) => {
+                    return(platforms.platform[index].name)
                 })}`,
                 description: '',
                 image_url: game.background_image,
@@ -86,7 +86,6 @@ export default class GamesCreate extends React.Component<GameCreateProps, GameCr
             this.props.resetSearchState(); 
             this.props.fetchGames();
             // alert('Game Added To Your List!');
-            
         })
     }
 

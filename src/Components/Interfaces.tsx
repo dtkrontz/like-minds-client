@@ -9,19 +9,20 @@ export interface ICommentResult {
 export interface IRawGResult {
     background_image: string,
     name: string,
-    genres: any,
-    platforms: any,
+    genres: IRawGGenres[],
+    platforms: IRawGPlatforms[],
 }
 
-interface IRawGGenres {
+export interface IRawGGenres {
     name: string,
 }
 
-interface IRawGPlatforms {
-    platform: any,
+export interface IRawGPlatforms {
+    platform: IRawGPlatformName[],
+    name: string,
 }
 
-interface IRawGPlatformName {
+export interface IRawGPlatformName {
     name: string,
 }
 

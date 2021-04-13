@@ -81,21 +81,22 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
         }))
     };
 
-    mapCommentsSort = (): any => {
-        return (
-            this.props.favoriteGames.sort((a: any, b: any) => {
-            let nameA: string = a.title.toUpperCase();
-            let nameB: string = b.title.toUpperCase();
-            console.log(nameA, nameB);
-            if (nameA < nameB) {
-                return -1;
-            } else if (nameA > nameB) {
-                return 1;
-            } else {
-                return 0;
-            };
-        }))
-    };
+    // mapCommentsSort = (result: IGameResult): any => {
+    //     console.log(result);
+    //     return (
+    //         this.props.favoriteGames.sort((a: any, b: any) => {
+    //         let nameA: string = a.title.toUpperCase();
+    //         let nameB: string = b.title.toUpperCase();
+    //         console.log(nameA, nameB);
+    //         if (nameA < nameB) {
+    //             return -1;
+    //         } else if (nameA > nameB) {
+    //             return 1;
+    //         } else {
+    //             return 0;
+    //         };
+    //     }))
+    // };
 
     commentMap = (result: IGameResult,) => {
         console.log(result);
