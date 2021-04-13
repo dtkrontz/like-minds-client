@@ -93,7 +93,11 @@ export default class ProfileDisplay extends React.Component<ProfileProps, Profil
                 <GameOfTheWeek />
                 <div className='searchBar'>
                 <label>Search for Games to Add: <input type='text' placeholder='Game Title' value={this.state.searchTerm} onChange={this.updateSearchTerm} />
-                <Button className='searchButton' onClick={this.searchGamesFetch}>Search</Button></label>
+                <Button style={{fontFamily: 'jaf-mashine, sans-serif',
+                fontWeight: 500,
+                fontStyle: 'normal',
+                color: 'white',
+                padding: '20px'}} className='searchButton' onClick={this.searchGamesFetch}>Search</Button></label>
                 </div>
                 <div>
                 <GameCreate token={this.props.token} gamesList={this.state.gamesList} resetSearchState={this.resetSearchState} open={this.state.create} handleClickClose={this.resetSearchState} fetchGames={this.props.fetchGames} />

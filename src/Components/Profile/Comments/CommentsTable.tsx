@@ -113,10 +113,18 @@ export default class CommentTable extends React.Component<CommentIndexProps, Com
                         <div key={index}>
                             <Typography>
                             <div style={{display: 'flex', justifyContent: 'center'}}>
-                                <Box display='flex' flexWrap='wrap'><Typography style={{overflowWrap: 'normal'}}>{commentResult.content} - {commentResult.user.username}</Typography></Box>
-                                {localStorage.id === result.comments[index].userId || localStorage.admin === 'true' ? <div> <Button size="small" color="primary"  onClick={() => {this.props.editComment(commentResult); this.props.handleClickOpenEdit()}}><EditIcon/></Button>
+                            <Grid container xs={12} spacing={0}>
+                                <Grid item xs={12} sm={8} alignItems='center' justify='flex-start'>
+                                <Box display='flex' flexWrap='wrap'><Typography style={{overflowWrap: 'normal'}}>{commentResult.content} </Typography></Box>
+                                <Box display='flex' justifyContent='flex-end'><Typography> - {commentResult.user.username}</Typography></Box>
+                                </Grid>
+                                <Grid item xs={12} sm={4}>
+                                <Box>{localStorage.id === result.comments[index].userId || localStorage.admin === 'true' ? <div> <Button size="small" color="primary"  onClick={() => {this.props.editComment(commentResult); this.props.handleClickOpenEdit()}}><EditIcon/></Button>
                                 <Button size="small" color="primary" onClick={((e: SyntheticEvent) => this.deleteComment(commentResult.id))}><HighlightOffSharpIcon /></Button>
                                  </div> : null}
+                                 </Box>
+                                 </Grid>
+                            </Grid>
                             </div>
                             </Typography>
                             <CardActionArea>
