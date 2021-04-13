@@ -39,11 +39,11 @@ function App() {
   const setUser = (data: IData) => {
     console.log(data);
     if (data.message === "Incorrect username or password") {
-      alert('Incorrect username or password');
+      alert(data.message);
     } else if (data.message === "Failed to log user in") {
-      alert('Failed to log user in - Please try again');
+      alert(data.message);
     } else if (data.message === "Username already in use") {
-      alert('Username already in use - Please try again');
+      alert(data.message);
     } else {
     localStorage.setItem('id', data.user.id);
     localStorage.setItem('admin', data.user.admin);
