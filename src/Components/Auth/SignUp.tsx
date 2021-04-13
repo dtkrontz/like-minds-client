@@ -35,6 +35,9 @@ export default class Signup extends Component<SignupProps, SignupState> {
             {username: e.target.value}
         )
     };
+    componentDidUpdate() {
+        console.log(this.state.username);
+    }
 
     updatePassword =(e: ChangeEvent<HTMLInputElement>) => {
         this.setState(
@@ -43,12 +46,15 @@ export default class Signup extends Component<SignupProps, SignupState> {
     };
 
     handleSubmit = (event: SyntheticEvent) => {
+        console.log('event started');
         event.preventDefault();
-        const regEx = new RegExp (/[a-z]{1,10}[0-9]{1,10}/i);
+        // const regEx = new RegExp (/[a-z]{1,10}[0-9]{1,10}/i);
         if(this.state.password.length <= 5 || this.state.username.length <= 5){
             alert('Username and Password require 6 or more characters.')
-       } else if (regEx.test(this.state.username)){
+            console.log('user wrong');
+       } else {
         // console.log(username, password);
+        console.log('user correct');
         fetch(`${APIURL}/auth/register`, {
             method: 'POST',
             body: JSON.stringify(
@@ -70,7 +76,6 @@ export default class Signup extends Component<SignupProps, SignupState> {
         })
     }
     }
-
 
     render() {
         return(
