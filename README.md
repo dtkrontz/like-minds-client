@@ -1,3 +1,5 @@
+# like-minds-client v1.0
+
 Welcome to Like Minds Client!
 
 LikeMinds is an application where individuals can search for games, add them to their saved list and mark a game as a favorite. Once marked as a favorite game users can navigate to a page where all games marked favorite game can be viewed. Users will be able to add comments on each game.
