@@ -1,6 +1,6 @@
 # like-minds-client v1.0
 
-Welcome to Like Minds Client!
+Welcome to Like Minds!
 
 LikeMinds is an application where individuals will be able to search RawG.io, (https://rawg.io/apidocs) a third party game API, and add any found game to their saved list. Once a game is saved to thier list a user can rate the game (0-10), give a short review, and mark if the game is their favorite. Once marked as a favorite game, users can navigate to a page where all games marked favorite game can be viewed. Users will be able to add comments on each game, even ones they did not personally add as favorite.
 
