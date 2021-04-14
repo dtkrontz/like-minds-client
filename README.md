@@ -9,5 +9,7 @@ This application has 2 types of users, Normal and Admin. Admins will have access
 The Data Associations are as follows: User has many games and comments, Game belongs to User and has many comments, Comments belongs to User and Game.
 
 Come experience the application Where LikeMinds connect! https://dk-like-minds-client.herokuapp.com/
+
+
 ![Favorite Games](https://user-images.githubusercontent.com/36709518/114637878-58942d00-9c98-11eb-9ab2-fa6a55f107a2.png)
 ![Saved Games](https://user-images.githubusercontent.com/36709518/114637980-95f8ba80-9c98-11eb-83e8-9ae6e1022529.png)
